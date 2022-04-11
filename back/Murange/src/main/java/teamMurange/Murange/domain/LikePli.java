@@ -12,9 +12,9 @@ import javax.persistence.Table;
 @Table(name = "like_pli")
 public class LikePli {
 
-//    @ManyToOne
-//    @JoinColumn(name = "user_id")
-//    private User user;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 
     @ManyToOne
     @JoinColumn(name = "pli_id")

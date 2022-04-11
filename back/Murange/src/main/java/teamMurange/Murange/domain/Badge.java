@@ -14,9 +14,12 @@ import java.util.List;
 public class Badge {
     @Id
     @Column(name = "badge_id")
-    private Integer badge_id;
+    private Long id;
 
     @Column(name = "likes")
     private Integer likes;
+
+    @OneToOne(mappedBy = "badge")
+    private User user;
 
 }

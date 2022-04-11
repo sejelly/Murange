@@ -32,5 +32,8 @@ public class Pli {
     @OneToMany(mappedBy = "LikePli")
     private List<LikePli> likePli = new ArrayList<>();
 
+    @OneToMany(mappedBy = "Comments")
+    private List<Comments> commentsList = new ArrayList<>();
+
 
 }
