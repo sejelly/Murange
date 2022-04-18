@@ -12,7 +12,7 @@ public interface MusicRepository extends JpaRepository<Music, Long> {
     List<Music> findAllByCategoryId(Long category_id);
 
     // playlist_id로 music 찾기
-    // List<Music> findAllByCategoryId(Long playlist_id);
+    List<Music> findAllByPlaylistId(Long playlist_id);
 }
 
 
