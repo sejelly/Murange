@@ -6,9 +6,16 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
+import teamMurange.Murange.domain.Music;
+import teamMurange.Murange.service.MusicService;
+
+import java.util.Date;
+import java.util.List;
 
 @RestController
 public class MainPage {
+
+    private MusicService musicService;
 
     // 계정 생성
     @PostMapping("/users/")
@@ -29,10 +36,5 @@ public class MainPage {
     }
 
 
-    // 감정에 따른 음악 불러오기
-    @GetMapping("/recommend/{category-id}")
-    public ResponseEntity getMusic(@PathVariable(value = "category-id") Long categoryId) {
-        return new ResponseEntity(HttpStatus.OK);
-    }
 
 }
