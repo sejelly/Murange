@@ -20,5 +20,7 @@ public class TopDailyService {
         List<TopDaily> topDailyList = topDailyRepository.findAllOrderByRank();
         return topDailyList;
     }
-    
+
+    // 조회수가 많아지면 TopDaily 생성
+
 }
