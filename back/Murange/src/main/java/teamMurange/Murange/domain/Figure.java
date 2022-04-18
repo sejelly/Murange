@@ -32,15 +32,15 @@ public class Figure {
             case "sad":
                 this.sad = updateFigure;
             case "angry":
-                this.sad = updateFigure;
+                this.angry = updateFigure;
             case "neutral":
-                this.sad = updateFigure;
+                this.neutral = updateFigure;
             case "disgust":
-                this.sad = updateFigure;
+                this.disgust = updateFigure;
             case "surprised":
-                this.sad = updateFigure;
+                this.surprised = updateFigure;
             case "scared":
-                this.sad = updateFigure;
+                this.scared = updateFigure;
         }
     }
 

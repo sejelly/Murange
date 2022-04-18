@@ -33,17 +33,16 @@ public class Music {
     @JoinColumn(name = "category_id")
     private Category category;
 
-//    @ManyToOne
-//    @JoinColumn(name = "playlist_id")
-//    private Playlist playlist;
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private Playlist playlist;
 
     @OneToMany(mappedBy = "LikeMusic")
-    private List<LikeMusic> likeMusics = new ArrayList<>();
+    private List<LikeMusic> likeMusicList = new ArrayList<>();
 
     @OneToMany(mappedBy = "Enroll")
-    private List<Enroll> enrolls = new ArrayList<>();
+    private List<Enroll> enrollList = new ArrayList<>();
 
-    // figure 업데이트하기
     public void updateFigure(Figure figure) {
         Figure.builder()
                 .angry(figure.getAngry())
@@ -59,13 +58,15 @@ public class Music {
 
     // 테스트용 음악 생성 빌더
     @Builder
-    public Music(Long id, String title, String singer, Figure figure, int streaming_cnt, Category category) {
+    public Music(Long id, String title, String img_url, String singer, Figure figure, int streaming_cnt, Category category, Playlist playlist) {
         this.figure = figure;
         this.id = id;
+        this.img_url = img_url;
         this.title = title;
         this.singer = singer;
         this.category = category;
         this.streaming_cnt = streaming_cnt;
+        this.playlist = playlist;
     }
     
 }

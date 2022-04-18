@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 
@@ -14,7 +15,7 @@ import java.util.List;
 public class Calendar {
     @Id
     @Column(name = "calendar_id")
-    private Long calendar_id;
+    private Long id;
 
     @Column(name = "date")
     private Date date;

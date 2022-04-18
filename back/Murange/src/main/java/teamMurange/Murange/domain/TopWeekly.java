@@ -1,5 +1,6 @@
 package teamMurange.Murange.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.Entity;
@@ -10,6 +11,7 @@ import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
+@Getter
 @Table(name = "top_weekly")
 public class TopWeekly {
     private int rank;

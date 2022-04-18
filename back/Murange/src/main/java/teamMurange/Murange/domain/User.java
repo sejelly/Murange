@@ -1,5 +1,6 @@
 package teamMurange.Murange.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,18 +28,25 @@ public class User {
     @JoinColumn(name = "id")
     private Badge badge;
 
-    @OneToMany(mappedBy = "LikePli")
-    private List<LikePli> likeplis = new ArrayList<>();
+    @OneToMany(mappedBy = "LikePlaylist")
+    private List<LikePlaylist> likePlaylistList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Pli")
-    private List<Pli> plis = new ArrayList<>();
+    @OneToMany(mappedBy = "Playlist")
+    private List<Playlist> playlistList = new ArrayList<>();
 
     @OneToMany(mappedBy = "Calendar")
-    private List<Calendar> calendars = new ArrayList<>();
+    private List<Calendar> calendarList = new ArrayList<>();
 
     @OneToMany(mappedBy = "Follow")
-    private List<Follow> follows = new ArrayList<>();
+    private List<Follow> followList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Comments")
-    private List<Comments> commentslist = new ArrayList<>();
+    @OneToMany(mappedBy = "Comment")
+    private List<Comment> commentlist = new ArrayList<>();
+
+    @Builder
+    public User(String name, String img_url, String email) {
+        this.name = name;
+        this.img_url = img_url;
+        this.email = email;
+    }
 }
