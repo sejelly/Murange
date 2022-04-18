@@ -1,14 +1,17 @@
 package teamMurange.Murange.UnitTest.service;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import teamMurange.Murange.domain.Figure;
 import teamMurange.Murange.domain.Music;
 import teamMurange.Murange.repository.MusicRepository;
+import teamMurange.Murange.service.MusicService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -18,15 +21,14 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
-public class UnitMusicServiceTest {
+@DisplayName("MusicService 테스트")
+public class MusicServiceUnitTest {
+
+    @InjectMocks
+    private MusicService musicService;
 
     @Mock
     private MusicRepository musicRepository;
-
-    @BeforeEach
-    public void setup() {
-        MockitoAnnotations.openMocks(this);
-    }
 
     private Figure getStubFigure() {
         Float surprised = 0.01F;
@@ -75,35 +77,41 @@ public class UnitMusicServiceTest {
         return musicList;
     }
 
+    @DisplayName("감정 카테고리별로 음악 조회하기")
     @Test // 감정 분석 결과 & 메인페이지 감정별 추천
-    public void 감정카테고리별_음악_조회 () throws Exception{
+     void 감정카테고리별_음악_조회 () throws Exception{
         // given
         when(musicRepository.findAllByCategoryId(any())).thenReturn(getStubMusicList());
 
         // when
         List<Music> musicList = musicRepository.findAllByCategoryId(any());
 
+        // List<Music> musicList = musicService.getMusicsByCategory(any());
+
         // then
         assertEquals(musicList.size(), getStubMusicList().size());
         assertEquals(musicList.get(1).getSinger(), getStubMusicList().get(1).getSinger());
-        System.out.println(musicList.get(1).getSinger());
-        System.out.println(getStubMusicList().get(1).getSinger());
     }
 
 
-
+    @DisplayName("플레이리스트별로 음악 조회하기")
     @Test
-    public void 플레이리스트별_음악_조회 () throws Exception{
+     void 플레이리스트별_음악_조회 () throws Exception{
         // given
+        when(musicRepository.findAllByPlaylistId(any())).thenReturn(getStubMusicList());
 
         // when
+        List<Music> musicList = musicRepository.findAllByPlaylistId(any());
 
         // then
-
+        assertEquals(musicList.size(), getStubMusicList().size());
+        assertEquals(musicList.get(1).getSinger(), getStubMusicList().get(1).getSinger());
     }
 
+
+    @DisplayName("음악 기본 정보 조회하기")
     @Test
-    public void 음악_기본정보_조회 () throws Exception{
+     void 음악_기본정보_조회 () throws Exception{
         // given
         when(musicRepository.getById(any())).thenReturn(getStubMusic());
 
@@ -115,9 +123,9 @@ public class UnitMusicServiceTest {
         assertEquals(music.getTitle(), getStubMusic().getTitle());
     }
 
-
+    @DisplayName("음악의 감정별 수치 조회하기")
     @Test
-    public void 음악_감정수치_조회 () throws Exception{
+     void 음악_감정수치_조회 () throws Exception{
         // given
         when(musicRepository.getById(any())).thenReturn(getStubMusic());
 
@@ -128,11 +136,11 @@ public class UnitMusicServiceTest {
         // then
         assertEquals(figure.getHappiness(), getStubFigure().getHappiness());
         assertEquals(figure.getAngry(), getStubFigure().getAngry());
-        // assertEquals(resultFigure, getStubFigure());
     }
 
+    @DisplayName("음악의 감정별 수치 업데이트하기")
     @Test
-    public void 음악_감정수치_업데이트 () throws Exception{
+    void 음악_감정수치_업데이트 () throws Exception{
         // given
         String first_emotion = "happiness";
         String second_emotion = "sad";
@@ -144,8 +152,6 @@ public class UnitMusicServiceTest {
         // when
         Music music = musicRepository.getById(any());
         Figure figure = music.getFigure();
-        
-        System.out.println(figure.getHappiness());
 
         figure.updateFigure(first_emotion, first_emotion_figure);
         figure.updateFigure(second_emotion, second_emotion_figure);
@@ -153,11 +159,5 @@ public class UnitMusicServiceTest {
 
         // then
         assertEquals(figure.getHappiness(), first_emotion_figure);
-        System.out.println(figure.getHappiness());
-
     }
-
-
-
-
 }
