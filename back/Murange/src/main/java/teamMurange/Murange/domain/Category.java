@@ -14,7 +14,7 @@ import java.util.List;
 public class Category {
     @Id
     @Column(name = "category_id")
-    private Integer category_id;
+    private Integer id;
 
     @Enumerated(EnumType.STRING)
     private Emotion first_emotion;
@@ -23,5 +23,5 @@ public class Category {
     private Emotion second_emotion;
 
     @OneToMany(mappedBy = "Music")
-    private List<Music> musics = new ArrayList<>();
+    private List<Music> musicList = new ArrayList<>();
 }
