@@ -17,7 +17,7 @@ public class TopDailyService {
     // 인기많은 순서대로 조회
     @Transactional(readOnly = true)
     public List<TopDaily> getTopDaily (Long category_id) {
-        List<TopDaily> topDailyList = topDailyRepository.findAllOrderByRank();
+        List<TopDaily> topDailyList = topDailyRepository.findAll();
         return topDailyList;
     }
 

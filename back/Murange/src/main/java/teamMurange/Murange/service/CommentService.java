@@ -34,7 +34,7 @@ public class CommentService {
 
         LocalDate date = LocalDate.now();
 
-        Comment comment = Comment.builder().contents(newContent).created_at(date)
+        Comment comment = Comment.builder().contents(newContent).createdAt(date)
                 /*.userComment(user).playlistComment(playlist)*/.build();
         commentRepository.save(comment);
     }

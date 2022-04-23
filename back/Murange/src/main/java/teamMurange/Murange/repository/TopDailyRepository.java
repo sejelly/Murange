@@ -10,5 +10,5 @@ import java.util.List;
 public interface TopDailyRepository extends JpaRepository<TopDaily, Long> {
 
     // 인기있는 순서대로 조회
-    List<TopDaily> findAllOrderByRank();
+    List<TopDaily> findAll();
 }

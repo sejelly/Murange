@@ -22,11 +22,11 @@ public class PlaylistPage {
     private final MusicService musicService;
 
     // 플레이리스트의 음악 불러오기
-    @GetMapping("/playlist/{playlist-id}")
-    public ResponseEntity getMusic(@PathVariable(value = "playlist-id") Long playlistId) {
-        List<Music> musicList = musicService.getMusicsByPlaylist(playlistId);
-        return new ResponseEntity(musicList, HttpStatus.OK);
-    }
+//    @GetMapping("/playlist/{playlist-id}")
+//    public ResponseEntity getMusic(@PathVariable(value = "playlist-id") Long playlistId) {
+//        List<Music> musicList = musicService.getMusicsByPlaylist(playlistId);
+//        return new ResponseEntity(musicList, HttpStatus.OK);
+//    }
 
     // 댓글 조회
     @GetMapping("/comments/{playlist-id}")

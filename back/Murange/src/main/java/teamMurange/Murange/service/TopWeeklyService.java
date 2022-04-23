@@ -18,7 +18,7 @@ public class TopWeeklyService {
     // 인기많은 순서대로 조회
     @Transactional(readOnly = true)
     public List<TopWeekly> getTopWeekly (Long category_id) {
-        List<TopWeekly> topWeeklyList = topWeeklyRepository.findAllOrderByRank();
+        List<TopWeekly> topWeeklyList = topWeeklyRepository.findAll();
         return topWeeklyList;
     }
 
