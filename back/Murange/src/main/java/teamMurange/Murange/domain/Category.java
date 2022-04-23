@@ -7,7 +7,7 @@ import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
-
+@Entity
 @Getter
 @NoArgsConstructor
 @Table(name = "category")
@@ -22,6 +22,6 @@ public class Category {
     @Enumerated(EnumType.STRING)
     private Emotion second_emotion;
 
-    @OneToMany(mappedBy = "Music")
+    @OneToMany(mappedBy = "category")
     private List<Music> musicList = new ArrayList<>();
 }

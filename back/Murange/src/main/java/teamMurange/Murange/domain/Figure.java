@@ -4,6 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 
 import javax.persistence.Embeddable;
+import javax.persistence.Entity;
 
 @Embeddable
 @Getter

@@ -11,10 +11,10 @@ import java.util.List;
 @Entity
 @Getter
 @NoArgsConstructor
-@Table(name = "users")
+@Table(name = "user")
 public class User {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="user_id")
     private Long id;
 
@@ -28,19 +28,19 @@ public class User {
     @JoinColumn(name = "id")
     private Badge badge;
 
-    @OneToMany(mappedBy = "LikePlaylist")
+    @OneToMany(mappedBy = "user")
     private List<LikePlaylist> likePlaylistList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Playlist")
+    @OneToMany(mappedBy = "user")
     private List<Playlist> playlistList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Calendar")
+    @OneToMany(mappedBy = "user")
     private List<Calendar> calendarList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Follow")
+    @OneToMany(mappedBy = "user")
     private List<Follow> followList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Comment")
+    @OneToMany(mappedBy = "user")
     private List<Comment> commentlist = new ArrayList<>();
 
     @Builder

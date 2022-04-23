@@ -14,7 +14,7 @@ import java.util.List;
 @Table(name = "music")
 public class Music {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="music_id")
     private Long id;
 
@@ -24,23 +24,21 @@ public class Music {
 
     private String img_url;
 
+    private String path;
+
     private int streaming_cnt;
 
     @Embedded
     private Figure figure;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @ManyToOne
-    @JoinColumn(name = "playlist_id")
-    private Playlist playlist;
-
-    @OneToMany(mappedBy = "LikeMusic")
+    @OneToMany(mappedBy = "music")
     private List<LikeMusic> likeMusicList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Enroll")
+    @OneToMany(mappedBy = "music")
     private List<Enroll> enrollList = new ArrayList<>();
 
     public void updateFigure(Figure figure) {
@@ -66,7 +64,6 @@ public class Music {
         this.singer = singer;
         this.category = category;
         this.streaming_cnt = streaming_cnt;
-        this.playlist = playlist;
     }
     
 }
