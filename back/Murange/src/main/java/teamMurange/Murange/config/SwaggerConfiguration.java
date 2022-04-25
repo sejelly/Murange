@@ -31,11 +31,11 @@ public class SwaggerConfiguration {
 
         return new ApiInfoBuilder()
                 .title("Murange API")
-                .description("음악 추천 웹사이트 API입니다")
+                .description("음악 추천 웹사이트 뮤랑이 API 명세서")
                 .version("0.0.1")
                 // .termsOfServiceUrl("https://antstudy.tistory.com/")
-                .license("LICENSE")
-                .licenseUrl("")
+                // .license("LICENSE")
+                // .licenseUrl("")
                 .build();
     }
 

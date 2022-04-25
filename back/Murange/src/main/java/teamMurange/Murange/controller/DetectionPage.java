@@ -2,6 +2,7 @@ package teamMurange.Murange.controller;
 
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,9 @@ import teamMurange.Murange.service.MusicService;
 
 import java.util.List;
 
-@Api(tags = { "Face Detection"})
+@Api(tags = { "Face Detection Controller"})
 @RestController
+@RequiredArgsConstructor
 public class DetectionPage {
 
     private MusicService musicService;
@@ -38,7 +40,7 @@ public class DetectionPage {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // 음악 좋아요 취소
+    @ApiOperation(value = "음악 좋아요 취소", notes = "음악별 좋아요 취소하기")
     @PostMapping("/likes/{like-music-id}")
     public ResponseEntity deleteLikeMusic(@PathVariable(value = "like-music-id") Long likeMusicId) {
         likeMusicService.deleteLikes(likeMusicId);
