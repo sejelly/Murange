@@ -1,5 +1,8 @@
 package teamMurange.Murange.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,13 +16,15 @@ import teamMurange.Murange.service.MusicService;
 
 import java.util.List;
 
+@Api(tags = { "Face Detection Controller"})
 @RestController
+@RequiredArgsConstructor
 public class DetectionPage {
 
     private MusicService musicService;
     private LikeMusicService likeMusicService;
 
-    // 감정 category-id에 따른 음악 불러오기
+    @ApiOperation(value = "감정별 음악 조회", notes = "감정 category-id에 따른 음악 불러오기")
     @GetMapping("/recommend/{category-id}")
     public ResponseEntity getComments(@PathVariable(value = "category-id") Long categoryId) {
         List<Music> musicList = musicService.getMusicsByCategory(categoryId);
@@ -27,7 +32,7 @@ public class DetectionPage {
         return new ResponseEntity(musicList, HttpStatus.OK);
     }
 
-    // 음악 좋아요 저장
+    @ApiOperation(value = "음악 좋아요 저장", notes = "음악별 좋아요 저장하기")
     @PostMapping("/likes/{user-id}/{music-id}")
     public ResponseEntity createLikeMusic(@PathVariable(value = "user-id") Long userId,
                                     @PathVariable(value = "music-id") Long musicId) {
@@ -35,7 +40,7 @@ public class DetectionPage {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    // 음악 좋아요 취소
+    @ApiOperation(value = "음악 좋아요 취소", notes = "음악별 좋아요 취소하기")
     @PostMapping("/likes/{like-music-id}")
     public ResponseEntity deleteLikeMusic(@PathVariable(value = "like-music-id") Long likeMusicId) {
         likeMusicService.deleteLikes(likeMusicId);

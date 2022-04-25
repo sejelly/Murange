@@ -44,10 +44,10 @@ public class TopDailyServiceUnitTest {
     @Test
      void 오늘의_인기음악_조회 () throws Exception {
         // given
-        when(topDailyRepository.findAllOrderByRank()).thenReturn(getStubTopDailyList());
+        when(topDailyRepository.findAll()).thenReturn(getStubTopDailyList());
 
         // when
-        List<TopDaily> topDailyList = topDailyRepository.findAllOrderByRank();
+        List<TopDaily> topDailyList = topDailyRepository.findAll();
 
         Music music1 = Music.builder().id(1L).singer("bts").title("butter").build();
         Music music2 = Music.builder().id(2L).singer("10cm").title("americano").build();

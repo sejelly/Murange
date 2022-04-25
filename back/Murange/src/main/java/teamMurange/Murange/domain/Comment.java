@@ -6,13 +6,8 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
-import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE;
-
-
+@Entity
 @Getter
 @NoArgsConstructor
 @Table(name = "comment")
@@ -21,28 +16,28 @@ public class Comment {
     @Column(name = "comment_id")
     private Long id;
 
-    private LocalDate created_at;
+    private LocalDate createdAt;
 
     private String contents;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "playlist_id")
     private Playlist playlist;
 
     public void updateComment(String newContents, LocalDate newDate) {
         this.contents = newContents;
-        this.created_at = newDate;
+        this.createdAt = newDate;
     }
 
     // 테스트용으로 빌더에 id 추가
     @Builder
-    public Comment(Long id, LocalDate created_at, String contents, User userComment, Playlist playlistComment) {
+    public Comment(Long id, LocalDate createdAt, String contents, User userComment, Playlist playlistComment) {
         this.contents = contents;
-        this.created_at = created_at;
+        this.createdAt = createdAt;
         this.user = userComment;
         this.playlist = playlistComment;
     }

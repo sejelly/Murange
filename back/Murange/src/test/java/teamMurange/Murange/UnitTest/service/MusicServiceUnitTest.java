@@ -94,19 +94,19 @@ public class MusicServiceUnitTest {
     }
 
 
-    @DisplayName("플레이리스트별로 음악 조회하기")
-    @Test
-     void 플레이리스트별_음악_조회 () throws Exception{
-        // given
-        when(musicRepository.findAllByPlaylistId(any())).thenReturn(getStubMusicList());
-
-        // when
-        List<Music> musicList = musicRepository.findAllByPlaylistId(any());
-
-        // then
-        assertEquals(musicList.size(), getStubMusicList().size());
-        assertEquals(musicList.get(1).getSinger(), getStubMusicList().get(1).getSinger());
-    }
+//    @DisplayName("플레이리스트별로 음악 조회하기")
+//    @Test
+//     void 플레이리스트별_음악_조회 () throws Exception{
+//        // given
+//        when(musicRepository.findAllByPlaylistId(any())).thenReturn(getStubMusicList());
+//
+//        // when
+//        List<Music> musicList = musicRepository.findAllByPlaylistId(any());
+//
+//        // then
+//        assertEquals(musicList.size(), getStubMusicList().size());
+//        assertEquals(musicList.get(1).getSinger(), getStubMusicList().get(1).getSinger());
+//    }
 
 
     @DisplayName("음악 기본 정보 조회하기")

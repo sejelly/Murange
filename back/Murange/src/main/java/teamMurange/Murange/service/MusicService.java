@@ -31,11 +31,11 @@ public class MusicService {
     }
 
     // playlist_id로 음악 조회
-    @Transactional(readOnly = true)
-    public List<Music> getMusicsByPlaylist (Long playlist_id) {
-        List<Music> musicList = musicRepository.findAllByCategoryId(playlist_id);
-        return musicList;
-    }
+//    @Transactional(readOnly = true)
+//    public List<Music> getMusicsByPlaylist (Long playlist_id) {
+//        List<Music> musicList = musicRepository.findAllByCategoryId(playlist_id);
+//        return musicList;
+//    }
 
     // 음악 id로 감정별 수치 조회
     @Transactional(readOnly = true)

@@ -1,11 +1,9 @@
 package teamMurange.Murange.UnitTest.service;
 
-import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
 import teamMurange.Murange.domain.Comment;
 import teamMurange.Murange.domain.Playlist;
@@ -25,7 +23,7 @@ public class CommentServiceUnitTest {
 
     @Mock
     private CommentRepository commentRepository;
-    
+
     private List<Comment> getStubCommentList() {
         Playlist playlist = Playlist.builder().id(100L).title("Piano playlist").build();
 
@@ -47,7 +45,7 @@ public class CommentServiceUnitTest {
         LocalDate createdAt = LocalDate.now();
 
         return Comment.builder()
-                .created_at(createdAt)
+                .createdAt(createdAt)
                 .contents(content)
                 .build();
     }
@@ -102,7 +100,7 @@ public class CommentServiceUnitTest {
         // then
         assertEquals(comment.getId(), commentId);
         assertEquals(comment.getContents(), newContent);
-        assertEquals(comment.getCreated_at(), createdAt);
+        assertEquals(comment.getCreatedAt(), createdAt);
     }
 
     @DisplayName("댓글 삭제하기")

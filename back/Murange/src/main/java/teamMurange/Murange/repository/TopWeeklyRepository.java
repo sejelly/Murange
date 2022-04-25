@@ -10,5 +10,5 @@ import java.util.List;
 public interface TopWeeklyRepository extends JpaRepository<TopWeekly, Long> {
 
     // 인기있는 순서대로 조회
-    List<TopWeekly> findAllOrderByRank();
+    List<TopWeekly> findAll();
 }

@@ -14,7 +14,8 @@ import java.util.List;
 @Table(name = "playlist")
 public class Playlist {
 
-    @Id @GeneratedValue
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="playlist_id")
     private Long id;
 
@@ -25,14 +26,18 @@ public class Playlist {
     @Embedded
     private Figure figure;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "LikePlaylist")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @OneToMany(mappedBy = "playlist")
     private List<LikePlaylist> likePlaylist = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Comments")
+    @OneToMany(mappedBy = "playlist")
     private List<Comment> commentList = new ArrayList<>();
 
     @Builder
