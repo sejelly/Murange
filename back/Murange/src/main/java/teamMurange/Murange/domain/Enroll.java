@@ -4,10 +4,7 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Getter
@@ -15,9 +12,13 @@ import javax.persistence.Table;
 @Table(name = "enroll")
 public class Enroll {
 
-//    @ManyToOne
-//    @JoinColumn(name = "playlist_id")
-//    private Playlist playlist;
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "enroll_id")
+    private Long id;
+
+    @ManyToOne
+    @JoinColumn(name = "playlist_id")
+    private Playlist playlist;
 
     @ManyToOne
     @JoinColumn(name = "music_id")

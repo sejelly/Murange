@@ -1,5 +1,6 @@
 package teamMurange.Murange.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,7 +14,7 @@ import java.util.List;
 @Table(name = "music")
 public class Music {
 
-    @Id @GeneratedValue
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="music_id")
     private Long id;
 
@@ -23,19 +24,46 @@ public class Music {
 
     private String img_url;
 
+    private String path;
+
     private int streaming_cnt;
 
     @Embedded
     private Figure figure;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "category_id")
     private Category category;
 
-    @OneToMany(mappedBy = "LikeMusic")
-    private List<LikeMusic> likeMusics = new ArrayList<>();
+    @OneToMany(mappedBy = "music")
+    private List<LikeMusic> likeMusicList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "Enroll")
-    private List<Enroll> enrolls = new ArrayList<>();
+    @OneToMany(mappedBy = "music")
+    private List<Enroll> enrollList = new ArrayList<>();
 
+    public void updateFigure(Figure figure) {
+        Figure.builder()
+                .angry(figure.getAngry())
+                .disgust(figure.getDisgust())
+                .happiness(figure.getHappiness())
+                .sad(figure.getSad())
+                .neutral(figure.getNeutral())
+                .scared(figure.getScared())
+                .surprised(figure.getSurprised())
+                .build();
+        this.figure = figure;
+    }
+
+    // 테스트용 음악 생성 빌더
+    @Builder
+    public Music(Long id, String title, String img_url, String singer, Figure figure, int streaming_cnt, Category category, Playlist playlist) {
+        this.figure = figure;
+        this.id = id;
+        this.img_url = img_url;
+        this.title = title;
+        this.singer = singer;
+        this.category = category;
+        this.streaming_cnt = streaming_cnt;
+    }
+    
 }

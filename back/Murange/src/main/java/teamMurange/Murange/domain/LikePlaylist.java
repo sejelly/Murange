@@ -1,29 +1,25 @@
 package teamMurange.Murange.domain;
 
-import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 
 @Entity
-@Getter
 @NoArgsConstructor
-@Table(name = "calendar")
-public class Calendar {
+@Table(name = "like_playlist")
+public class LikePlaylist {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "calendar_id")
+    @Column(name="like_playlist_id")
     private Long id;
-
-    @Column(name = "date")
-    private Date date;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "playlist_id")
+    private Playlist playlist;
 
 }

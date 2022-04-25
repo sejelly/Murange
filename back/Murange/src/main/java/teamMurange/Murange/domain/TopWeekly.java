@@ -1,17 +1,22 @@
 package teamMurange.Murange.domain;
 
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
+@Getter
 @Table(name = "top_weekly")
 public class TopWeekly {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="top_weekly_id")
+    private Long id;
+
     private int rank;
 
     private LocalDate date;
