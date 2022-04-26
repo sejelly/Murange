@@ -5,14 +5,16 @@ import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.*;
 import teamMurange.Murange.domain.Music;
-import teamMurange.Murange.service.MusicService;
+import teamMurange.Murange.domain.TopDaily;
+import teamMurange.Murange.domain.TopWeekly;
+import teamMurange.Murange.dto.UserRequestDto;
+import teamMurange.Murange.service.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Api(tags = { "Recommendation Controller"})
 @RestController
@@ -26,8 +28,8 @@ public class MainPage {
     
     @ApiOperation(value = "유저 등록", notes = "유저 계정 생성하기")
     @PostMapping("/users/")
-    public ResponseEntity makeUser(@RequestBody @Validated UsersRequestDto user) {
-        userService.makeUser(UserRequestDto);
+    public ResponseEntity makeUser(@RequestBody @Validated UserRequestDto userRequestDto) {
+        userService.makeUser(userRequestDto);
         return new ResponseEntity(HttpStatus.OK);
         // ! spring security, google oauth2 연결 후 변경사항 체크
     }
@@ -39,19 +41,19 @@ public class MainPage {
         return new ResponseEntity(HttpStatus.OK);
     }
 
-    @ApiOperation(value = "daily top100", notes = "오늘의 인기 음악 100개 불러오기")
-    @GetMapping("/recommend/topdaily")
-    public ResponseEntity getTopDaily(@PathVariable(value = "top-daily") LocalDate date) {
-        List<TopDaily> topDailyList = TopDailyService.getTopDailyList(categoryId);
-        return new ResponseEntity(topDailyList, HttpStatus.OK);
-    }
+//    @ApiOperation(value = "daily top100", notes = "오늘의 인기 음악 100개 불러오기")
+//    @GetMapping("/recommend/topdaily")
+//    public ResponseEntity getTopDaily(@PathVariable(value = "top-daily") Long categoryId) {
+//        List<TopDaily> topDailyList = TopDailyService.getTopDaily(categoryId);
+//        return new ResponseEntity(topDailyList, HttpStatus.OK);
+//    }
 
-    @ApiOperation(value = "weekly top100", notes = "금주의 인기 음악 100개 불러오기")
-    @GetMapping("/recommend/topweekly")
-    public ResponseEntity getTopWeekly(@PathVariable(value = "top-weekly") LocalDate date) {
-        List<TopWeekly> topWeeklyList = TopWeeklyService.getTopWeeklyList(categoryId);
-        return new ResponseEntity(topWeeklyList, HttpStatus.OK);
-    }
+//    @ApiOperation(value = "weekly top100", notes = "금주의 인기 음악 100개 불러오기")
+//    @GetMapping("/recommend/topweekly")
+//    public ResponseEntity getTopWeekly(@PathVariable(value = "top-weekly") Long categoryId) {
+//        List<TopWeekly> topWeeklyList = TopWeeklyService.getTopWeekly(categoryId);
+//        return new ResponseEntity(topWeeklyList, HttpStatus.OK);
+//    }
 
     // ! 검색 기능 보류 - 추후 사용자 검색 시 팔로우 기능 열어둬야함
 

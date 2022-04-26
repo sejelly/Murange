@@ -3,12 +3,8 @@ package teamMurange.Murange.service;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import teamMurange.Murange.domain.User;
-import teamMurange.Murange.domain.Follow;
-import teamMurange.Murange.domain.Calendar;
-import teamMurange.Murange.domain.Badge;
-import teamMurange.Murange.domain.Likes;
-import teamMurange.Murange.domain.Playlist;
+import teamMurange.Murange.domain.*;
+import teamMurange.Murange.dto.UserRequestDto;
 import teamMurange.Murange.repository.UserRepository;
 import teamMurange.Murange.repository.PlaylistRepository;
 import teamMurange.Murange.repository.LikeMusicRepository;
@@ -46,8 +42,8 @@ public class UserService {
 
     // user_id 받아 좋아요한 음악 조회
     @Transactional(readOnly = true)
-    public List<Music> getLikeMusicList (Long user_id) {
-        List<Music> likemusicList = likeMusicRepository.findAllByUserId(user_id);
+    public List<LikeMusic> getLikeMusicList (Long user_id) {
+        List<LikeMusic> likemusicList = likeMusicRepository.findAllByUserId(user_id);
         return likemusicList;
     }
 
@@ -75,21 +71,22 @@ public class UserService {
     // user_id 받아 팔로워 조회
     @Transactional
     public List<Follow> getFollowList (Long user_id) {
-        List<Follow> followList = followRepository.findAllByUserId(user_id);
+        List<Follow> followList = FollowRepository.findAllByUserId(user_id);
         return followList;
     }
 
     //팔로워 추가
-    public void createFollow (Long userId, Long followId) {
-        User user = userRepository.getById(userId);
-        User followee = userRepository.getById(followId);
-        Follow follow = Follow.builder().user(user).followee(followee).build();
+    public void createFollow (Long userId1, Long userId2) {
+        User user = userRepository.getById(userId1);
+        User followee = userRepository.getById(userId2);
+        Follow follow = Follow.builder().user1(user).user2(followee).build();
         followRepository.save(follow);
     }
 
     // 팔로워 삭제
-    public void deleteFollow(Long follow_Id) {
-        followRepository.deleteById(userId);
+    public void deleteFollow (Long followId) {
+        Follow follow = followRepository.getById(followId);
+        followRepository.delete(follow);
     }
 
 

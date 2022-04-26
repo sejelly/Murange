@@ -2,6 +2,12 @@ package teamMurange.Murange.dto;
 
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import teamMurange.Murange.domain.Badge;
+import teamMurange.Murange.domain.Calendar;
+import teamMurange.Murange.domain.Follow;
+import teamMurange.Murange.domain.Playlist;
+
+import java.util.List;
 
 
 @Getter
