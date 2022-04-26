@@ -53,6 +53,6 @@ public class MainPage {
         return new ResponseEntity(topWeeklyList, HttpStatus.OK);
     }
 
-    // ! 검색 기능 보류
+    // ! 검색 기능 보류 - 추후 사용자 검색 시 팔로우 기능 열어둬야함
 
 }
