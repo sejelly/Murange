@@ -7,4 +7,6 @@ import teamMurange.Murange.domain.LikePlaylist;
 @Repository
 public interface LikePlaylistRepository extends JpaRepository<LikePlaylist, Long> {
 
+    // user_id로 좋아요 누른 playlist 찾기
+    List<LikePlaylist> findAllByUserId(Long user_id);
 }

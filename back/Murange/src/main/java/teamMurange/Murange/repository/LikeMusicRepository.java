@@ -7,4 +7,6 @@ import teamMurange.Murange.domain.LikeMusic;
 @Repository
 public interface LikeMusicRepository extends JpaRepository<LikeMusic, Long> {
 
+    // user_id로 좋아요 누른 music 찾기
+    List<LikeMusic> findAllByUserId(Long user_id);
 }
