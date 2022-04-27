@@ -1,4 +1,4 @@
-package teamMurange.Murange.service;
+package teamMurange.Murange.UnitTest.service;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeEach;
