@@ -7,9 +7,10 @@ spring:
       matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 401868
-    url: jdbc:mysql://localhost:3306/murangedb?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
+#    password: 401868
+    url: jdbc:mysql://localhost:3306/murangtest?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
+    username: sejelly
+    password: kk891006!!
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect

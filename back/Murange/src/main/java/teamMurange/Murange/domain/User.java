@@ -29,7 +29,7 @@ public class User {
     private Badge badge;
 
     @OneToMany(mappedBy = "user")
-    private List<LikePlaylist> likePlaylistList = new ArrayList<>();
+    private List<Playlist> likePlaylistList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Playlist> playlistList = new ArrayList<>();
