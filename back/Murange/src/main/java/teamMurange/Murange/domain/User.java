@@ -25,7 +25,7 @@ public class User {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "badge_id")
     private Badge badge;
 
     @OneToMany(mappedBy = "user")
