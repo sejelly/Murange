@@ -11,4 +11,6 @@ public interface TopDailyRepository extends JpaRepository<TopDaily, Long> {
 
     // 인기있는 순서대로 조회
     List<TopDaily> findAll();
+
+    List<TopDaily> findAllByCategoryId(Long category_id);
 }
