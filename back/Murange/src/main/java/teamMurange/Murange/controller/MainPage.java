@@ -7,13 +7,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
-import teamMurange.Murange.domain.Music;
-import teamMurange.Murange.domain.TopDaily;
-import teamMurange.Murange.domain.TopWeekly;
+import teamMurange.Murange.dto.CalendarResponseDto;
+import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.dto.UserRequestDto;
 import teamMurange.Murange.service.*;
 
-import java.time.LocalDate;
 import java.util.List;
 
 @Api(tags = { "Recommendation Controller"})
@@ -25,7 +23,10 @@ public class MainPage {
     private UserService userService;
     private TopDailyService topDailyService;
     private TopWeeklyService topWeeklyService;
-    
+    private CategoryService categoryService;
+    private CalendarService calendarService;
+
+
     @ApiOperation(value = "유저 등록", notes = "유저 계정 생성하기")
     @PostMapping("/users/")
     public ResponseEntity makeUser(@RequestBody @Validated UserRequestDto userRequestDto) {
@@ -39,6 +40,16 @@ public class MainPage {
     public ResponseEntity getUser(@PathVariable(value = "user-id") Long userId) {
         userService.getUser(userId);
         return new ResponseEntity(HttpStatus.OK);
+    }
+
+    @ApiOperation(value = "유저 감정 기반 음악 추천", notes = "유저의 마지막 감정 기반 음악 추천")
+    @GetMapping("/recommend/{user-id}")
+    public ResponseEntity getMusicByUserEmotion(@PathVariable(value = "user-id") Long userId) {
+        CalendarResponseDto calendar = calendarService.findUserCalendar(userId);
+        Long categoryId = categoryService.findCategoryId(calendar.getFirstEmotion(), calendar.getSecondEmotion());
+        List<MusicResponseDto> musicResponseDtoList = musicService.getMusicsByCategory(categoryId);
+
+        return new ResponseEntity(musicResponseDtoList, HttpStatus.OK);
     }
 
 //    @ApiOperation(value = "daily top100", notes = "오늘의 인기 음악 100개 불러오기")

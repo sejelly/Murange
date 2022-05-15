@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import teamMurange.Murange.domain.Comment;
 import teamMurange.Murange.domain.Music;
 import teamMurange.Murange.dto.CommentRequestDto;
+import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.repository.CommentRepository;
 import teamMurange.Murange.service.CommentService;
 import teamMurange.Murange.service.MusicService;
@@ -24,12 +25,12 @@ public class PlaylistPage {
     private final CommentService commentService;
     private final MusicService musicService;
 
-//    @ApiOperation(value = "플레이리스트별 음악 조회", notes = "플레이리스트의 음악 불러오기")
-//    @GetMapping("/playlist/{playlist-id}")
-//    public ResponseEntity getMusic(@PathVariable(value = "playlist-id") Long playlistId) {
-//        List<Music> musicList = musicService.getMusicsByPlaylist(playlistId);
-//        return new ResponseEntity(musicList, HttpStatus.OK);
-//    }
+    @ApiOperation(value = "플레이리스트별 음악 조회", notes = "플레이리스트의 음악 불러오기")
+    @GetMapping("/playlist/{playlist-id}")
+    public ResponseEntity getMusic(@PathVariable(value = "playlist-id") Long playlistId) {
+        List<MusicResponseDto> musicList = musicService.getMusicsByPlaylist(playlistId);
+        return new ResponseEntity(musicList, HttpStatus.OK);
+    }
 
     @ApiOperation(value = "댓글 조회", notes = "댓글 조회하기")
     @GetMapping("/comments/{playlist-id}")
