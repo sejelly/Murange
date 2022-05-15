@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.Figure;
 import teamMurange.Murange.domain.Music;
+import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.repository.MusicRepository;
 
 import java.util.List;
@@ -25,17 +26,17 @@ public class MusicService {
 
     // category_id로 음악 조회
     @Transactional(readOnly = true)
-    public List<Music> getMusicsByCategory (Long category_id) {
-        List<Music> musicList = musicRepository.findAllByCategoryId(category_id);
+    public List<MusicResponseDto> getMusicsByCategory (Long category_id) {
+        List<MusicResponseDto> musicList = musicRepository.searchMusicByEmotionCategory(category_id);
         return musicList;
     }
 
     // playlist_id로 음악 조회
-//    @Transactional(readOnly = true)
-//    public List<Music> getMusicsByPlaylist (Long playlist_id) {
-//        List<Music> musicList = musicRepository.findAllByCategoryId(playlist_id);
-//        return musicList;
-//    }
+    @Transactional(readOnly = true)
+    public List<MusicResponseDto> getMusicsByPlaylist (Long playlist_id) {
+        List<MusicResponseDto> musicList = musicRepository.searchMusicByPlaylist(playlist_id);
+        return musicList;
+    }
 
     // 음악 id로 감정별 수치 조회
     @Transactional(readOnly = true)
