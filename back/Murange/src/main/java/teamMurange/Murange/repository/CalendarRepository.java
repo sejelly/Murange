@@ -7,7 +7,7 @@ import teamMurange.Murange.domain.Calendar;
 import java.util.List;
 
 @Repository
-public interface CalendarRepository extends JpaRepository<Calendar, Long> {
+public interface CalendarRepository extends JpaRepository<Calendar, Long>, CalendarRepositoryCustom {
 
         // user_id 받아와 calendar 조회
         List<Calendar> findAllByUserId(Long user_id);
