@@ -80,12 +80,12 @@ public class UserService {
     }
 
     //팔로워 추가
-    public void createFollow (Long userId1, Long userId2) {
-        User user = userRepository.getById(userId1);
-        User followee = userRepository.getById(userId2);
-        Follow follow = Follow.builder().user1(user).user2(followee).build();
-        followRepository.save(follow);
-    }
+//    public void createFollow (Long userId1, Long userId2) {
+//        User user = userRepository.getById(userId1);
+//        User followee = userRepository.getById(userId2);
+//        Follow follow = Follow.builder().user1(user).user2(followee).build();
+//        followRepository.save(follow);
+//    }
 
     // 팔로워 삭제
     public void deleteFollow (Long followId) {
