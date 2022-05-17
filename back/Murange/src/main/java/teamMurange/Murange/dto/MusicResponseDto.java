@@ -6,7 +6,9 @@ import teamMurange.Murange.domain.Music;
 
 @Getter
 @NoArgsConstructor
-public class MusicDataDto {
+public class MusicResponseDto {
+
+    private Long id;
 
     private String title;
 
@@ -16,11 +18,15 @@ public class MusicDataDto {
 
     private int streaming_cnt;
 
-    public MusicDataDto(Music music) {
+    private String path;
+
+    public MusicResponseDto(Music music) {
+        this.id = music.getId();
         this.title = music.getTitle();
         this.singer = music.getSinger();
         this.img_url = music.getImg_url();
         this.streaming_cnt = music.getStreaming_cnt();
+        this.path = music.getPath();
     }
 
 }

@@ -9,8 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import teamMurange.Murange.domain.Music;
-import teamMurange.Murange.repository.MusicRepository;
+import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.service.LikeMusicService;
 import teamMurange.Murange.service.MusicService;
 
@@ -27,7 +26,7 @@ public class DetectionPage {
     @ApiOperation(value = "감정별 음악 조회", notes = "감정 category-id에 따른 음악 불러오기")
     @GetMapping("/recommend/{category-id}")
     public ResponseEntity getComments(@PathVariable(value = "category-id") Long categoryId) {
-        List<Music> musicList = musicService.getMusicsByCategory(categoryId);
+        List<MusicResponseDto> musicList = musicService.getMusicsByCategory(categoryId);
         // 좋아요 순서대로 -> DB 수정 필요
         return new ResponseEntity(musicList, HttpStatus.OK);
     }

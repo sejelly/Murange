@@ -14,7 +14,7 @@ import java.util.List;
 public class Category {
     @Id
     @Column(name = "category_id")
-    private Integer id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
     private Emotion first_emotion;

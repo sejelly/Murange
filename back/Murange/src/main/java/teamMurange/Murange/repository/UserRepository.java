@@ -9,7 +9,7 @@ import java.util.List;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     // user_id로 user 찾기
-    List<User> findAllByUserId(Long user_id);
+    List<User> findAllById(Long user_id);
 
 }
 

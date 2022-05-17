@@ -25,7 +25,7 @@ public class User {
     private String email;
 
     @OneToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "badge_id")
     private Badge badge;
 
     @OneToMany(mappedBy = "user")
@@ -44,9 +44,10 @@ public class User {
     private List<Comment> commentlist = new ArrayList<>();
 
     @Builder
-    public User(String name, String img_url, String email) {
+    public User(String name, String img_url, String email, Long id) {
         this.name = name;
         this.img_url = img_url;
         this.email = email;
+        this.id = id;
     }
 }
