@@ -1,4 +1,4 @@
-package teamMurange.Murange.repository;
+package teamMurange.Murange.repository.CalendarRepositoryCustom;
 
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;

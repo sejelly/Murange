@@ -1,4 +1,4 @@
-package teamMurange.Murange.repository;
+package teamMurange.Murange.repository.CategoryRepositoryCustom;
 
 import com.querydsl.jpa.impl.JPAQueryFactory;
 import teamMurange.Murange.domain.Emotion;
@@ -18,8 +18,8 @@ public class CategoryRepositoryImpl implements CategoryRepositoryCustom{
         Long result = queryFactory
                 .select(category.id)
                 .from(category)
-                .where(category.first_emotion.eq(firstEmotion)
-                .and(category.second_emotion.eq(secondEmotion)))
+                .where(category.firstEmotion.eq(firstEmotion)
+                .and(category.secondEmotion.eq(secondEmotion)))
                 .fetchOne();
         return result;
     };

@@ -1,4 +1,4 @@
-package teamMurange.Murange.repository;
+package teamMurange.Murange.repository.MusicRepositoryCustom;
 
 import com.querydsl.core.types.Predicate;
 import com.querydsl.core.types.Projections;
@@ -28,13 +28,13 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom {
                         music.id,
                         music.title,
                         music.singer,
-                        music.img_url,
-                        music.streaming_cnt,
+                        music.imgUrl,
+                        music.streamingCnt,
                         music.path))
                 .from(music)
                 .join(music.category, QCategory.category)
                 .where(categoryIdEq(categoryIdCond))
-                .orderBy(music.streaming_cnt.desc())
+                .orderBy(music.streamingCnt.desc())
                 .limit(50)
                 .fetch();
         return result;
@@ -52,13 +52,13 @@ public class MusicRepositoryImpl implements MusicRepositoryCustom {
                         enroll.music.id,
                         enroll.music.title,
                         enroll.music.singer,
-                        enroll.music.img_url,
-                        enroll.music.streaming_cnt,
+                        enroll.music.imgUrl,
+                        enroll.music.streamingCnt,
                         enroll.music.path
                         ))
                 .from(enroll)
                 .where(enroll.playlist.id.eq(playlistIdCond))
-                .orderBy(music.streaming_cnt.desc())
+                .orderBy(music.streamingCnt.desc())
                 .limit(50)
                 .fetch();
         return result;

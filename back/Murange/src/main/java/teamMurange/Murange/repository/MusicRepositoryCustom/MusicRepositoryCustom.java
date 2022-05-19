@@ -1,4 +1,4 @@
-package teamMurange.Murange.repository;
+package teamMurange.Murange.repository.MusicRepositoryCustom;
 
 import teamMurange.Murange.dto.MusicResponseDto;
 

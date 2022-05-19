@@ -1,4 +1,4 @@
-package teamMurange.Murange.repository;
+package teamMurange.Murange.repository.CategoryRepositoryCustom;
 
 import teamMurange.Murange.domain.Emotion;
 

@@ -3,6 +3,7 @@ package teamMurange.Murange.repository;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 import teamMurange.Murange.domain.Music;
+import teamMurange.Murange.repository.MusicRepositoryCustom.MusicRepositoryCustom;
 
 import java.util.List;
 @Repository
