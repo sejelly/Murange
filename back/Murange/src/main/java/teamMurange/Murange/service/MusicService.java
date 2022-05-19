@@ -5,8 +5,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.Figure;
 import teamMurange.Murange.domain.Music;
+import teamMurange.Murange.domain.TopDaily;
 import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.repository.MusicRepository;
+import teamMurange.Murange.repository.TopDailyRepository;
 
 import java.util.List;
 
@@ -16,6 +18,18 @@ import java.util.List;
 public class MusicService {
 
     private final MusicRepository musicRepository;
+    private final TopDailyRepository topDailyRepository;
+
+    // 음악 처음 재생
+    @Transactional(readOnly = true)
+    public void playMusic(Long music_id) {
+        Music music = musicRepository.getById(music_id);
+        // 1. 음악 재생하기
+
+        // 2. 음악 조회수 업데이트
+        music.updateStreamingCnt();
+
+    }
 
     // 음악 id로 음악 기본 데이터 조회
     @Transactional(readOnly = true)
