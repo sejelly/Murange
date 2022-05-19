@@ -24,8 +24,8 @@ public class MusicResponseDto {
         this.id = music.getId();
         this.title = music.getTitle();
         this.singer = music.getSinger();
-        this.img_url = music.getImg_url();
-        this.streaming_cnt = music.getStreaming_cnt();
+        this.img_url = music.getImgUrl();
+        this.streaming_cnt = music.getStreamingCnt();
         this.path = music.getPath();
     }
 
