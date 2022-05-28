@@ -38,7 +38,7 @@ public class CommentController {
 
 
     @ApiOperation(value = "테스트용 전체 조회", notes = "테스트용")
-    @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
+    // @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
     @GetMapping("/all")
     @ResponseBody
     public Map<String,Object> getComments22(@RequestParam Map<String, Object> params,  HttpServletRequest request, HttpServletResponse response) throws Exception, Exception {
@@ -53,7 +53,7 @@ public class CommentController {
 
 
     @ResponseBody
-    @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
+    // @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
     @PostMapping("/url")
     public ResponseEntity test(@RequestBody Map<String, Object> inputData) throws Exception {
         String contents = (String) inputData.get("contents");
