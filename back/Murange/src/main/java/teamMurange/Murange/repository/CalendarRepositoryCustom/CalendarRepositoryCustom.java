@@ -1,4 +1,4 @@
-package teamMurange.Murange.repository;
+package teamMurange.Murange.repository.CalendarRepositoryCustom;
 
 import teamMurange.Murange.dto.CalendarResponseDto;
 
