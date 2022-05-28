@@ -1,5 +1,6 @@
 package teamMurange.Murange.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -14,14 +15,21 @@ import java.util.List;
 public class Category {
     @Id
     @Column(name = "category_id")
-    private Integer id;
+    private Long id;
 
     @Enumerated(EnumType.STRING)
-    private Emotion first_emotion;
+    private Emotion firstEmotion;
 
     @Enumerated(EnumType.STRING)
-    private Emotion second_emotion;
+    private Emotion secondEmotion;
 
     @OneToMany(mappedBy = "category")
     private List<Music> musicList = new ArrayList<>();
+
+    @Builder
+    public Category(Long id, Emotion firstEmotion, Emotion secondEmotion) {
+        this.id = id;
+        this.firstEmotion = firstEmotion;
+        this.secondEmotion = secondEmotion;
+    }
 }
