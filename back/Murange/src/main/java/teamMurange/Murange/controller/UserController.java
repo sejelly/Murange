@@ -18,7 +18,7 @@ public class UserController {
     private UserService userService;
 
     @ApiOperation(value = "유저 등록", notes = "유저 계정 생성하기")
-    @PostMapping("/users/")
+    @PostMapping("/user")
     public ResponseEntity makeUser(@RequestBody @Validated UserRequestDto userRequestDto) {
         userService.makeUser(userRequestDto);
         return new ResponseEntity(HttpStatus.OK);
@@ -26,7 +26,7 @@ public class UserController {
     }
 
     @ApiOperation(value = "유저 조회", notes = "유저 계정 조회하기")
-    @GetMapping("/users/{user-id}")
+    @GetMapping("/user/{user-id}")
     public ResponseEntity getUser(@PathVariable(value = "user-id") Long userId) {
         userService.getUser(userId);
         return new ResponseEntity(HttpStatus.OK);
