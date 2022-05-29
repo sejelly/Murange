@@ -4,10 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.LikeMusic;
-import teamMurange.Murange.domain.Music;
-import teamMurange.Murange.domain.Playlist;
-import teamMurange.Murange.domain.User;
-
 import teamMurange.Murange.repository.LikeMusicRepository;
 
 @Service

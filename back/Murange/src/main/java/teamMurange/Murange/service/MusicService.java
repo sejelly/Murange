@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.Figure;
 import teamMurange.Murange.domain.Music;
-import teamMurange.Murange.domain.TopDaily;
 import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.repository.MusicRepository;
 import teamMurange.Murange.repository.TopDailyRepository;

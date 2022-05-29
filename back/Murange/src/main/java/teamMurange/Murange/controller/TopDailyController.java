@@ -7,15 +7,19 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.service.MusicService;
 import teamMurange.Murange.service.TopDailyService;
 import teamMurange.Murange.service.TopWeeklyService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "TopDaily Controller"})
 @RestController
 @RequiredArgsConstructor
 public class TopDailyController {
@@ -33,8 +37,20 @@ public class TopDailyController {
 
     @ApiOperation(value = "일간 인기 음악 추천", notes = "메인 화면에서의 음악 추천")
     @GetMapping("/recommend/today")
+    @ResponseBody
     public ResponseEntity getTopDaily() {
         List<MusicResponseDto> musicList = topDailyService.getTopDailyAll();
-        return new ResponseEntity(musicList, HttpStatus.OK);
+
+        List<Map<String,Object>> returnMap = new ArrayList<>();
+        for (int i = 0; i < musicList.size() ; i ++) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("id", musicList.get(i).getId());
+            map.put("title", musicList.get(i).getTitle());
+            map.put("singer", musicList.get(i).getSinger());
+            map.put("img_path", musicList.get(i).getImg_url());
+            returnMap.add(map);
+        }
+
+        return new ResponseEntity(returnMap, HttpStatus.OK);
     }
 }

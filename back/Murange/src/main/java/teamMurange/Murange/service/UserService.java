@@ -5,12 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.*;
 import teamMurange.Murange.dto.UserRequestDto;
-import teamMurange.Murange.repository.UserRepository;
-import teamMurange.Murange.repository.PlaylistRepository;
-import teamMurange.Murange.repository.LikeMusicRepository;
-import teamMurange.Murange.repository.LikePlaylistRepository;
-import teamMurange.Murange.repository.CalendarRepository;
-import teamMurange.Murange.repository.FollowRepository;
+import teamMurange.Murange.repository.*;
 
 import java.util.List;
 

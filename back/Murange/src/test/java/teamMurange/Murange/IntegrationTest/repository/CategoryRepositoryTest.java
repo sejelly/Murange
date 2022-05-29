@@ -7,10 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
-import teamMurange.Murange.domain.Category;
-import teamMurange.Murange.domain.Emotion;
-import teamMurange.Murange.domain.QUser;
-import teamMurange.Murange.domain.User;
+import teamMurange.Murange.domain.*;
 import teamMurange.Murange.dto.CalendarResponseDto;
 import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.repository.CalendarRepository;
@@ -31,10 +28,31 @@ public class CategoryRepositoryTest {
     @Autowired
     EntityManager em;
 
+    @Autowired
     private MusicRepository musicRepository;
     @Autowired
     private CategoryRepository categoryRepository;
     private CalendarRepository calendarRepository;
+
+
+    @DisplayName("카테고리 저장")
+    @Test
+    public void start() {
+        Category category1 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.sad).build();;
+        Category category2 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.neutral).build();;
+        Category category3 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();;
+        Category category4 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.disgust).build();;
+        Category category5 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.scared).build();;
+        Category category6 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.surprised).build();;
+
+        categoryRepository.save(category1);
+        categoryRepository.save(category2);
+        categoryRepository.save(category3);
+        categoryRepository.save(category4);
+        categoryRepository.save(category5);
+        categoryRepository.save(category6);
+
+    };
 
 
     @DisplayName("주감정 부감정으로 카테고리 id 조회하기")

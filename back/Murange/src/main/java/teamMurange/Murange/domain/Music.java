@@ -60,9 +60,8 @@ public class Music {
 
     // 테스트용 음악 생성 빌더
     @Builder
-    public Music(Long id, String title, String imgUrl, String singer, Figure figure, int streamingCnt, Category category, Playlist playlist) {
+    public Music(String title, String imgUrl, String singer, Figure figure, int streamingCnt, Category category, Playlist playlist) {
         this.figure = figure;
-        this.id = id;
         this.imgUrl = imgUrl;
         this.title = title;
         this.singer = singer;
