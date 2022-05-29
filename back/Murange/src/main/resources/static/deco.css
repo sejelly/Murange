@@ -40,6 +40,7 @@ button {
   width: 30%;
   height: 100%;
   max-width: 400px;
+  z-index: 10;
 }
 .nowpart {
   width: 100%;
@@ -87,6 +88,7 @@ button {
   justify-content: center;
   justify-items: center;
   margin: auto;
+  z-index: 3;
 }
 
 .player {
@@ -100,6 +102,7 @@ button {
   justify-content: center;
   justify-items: center;
   background-color: rgb(63, 63, 63);
+  z-index: 10;
 }
 .player div {
   padding: 50px;
@@ -109,7 +112,7 @@ button {
   width: 60px;
   display: flexbox;
   margin: 10px;
-  background-image: url("../../../../../../Projects/image/celebrity.jpg");
+  background-image: url("image/celebrity.jpg");
   background-size: contain;
 }
 
@@ -118,14 +121,14 @@ button {
   height: 100px;
   display: flexbox;
   margin: 10px;
-  background-image: url("../../../../../../Projects/image/celebrity.jpg");
+  background-image: url("image/celebrity.jpg");
   background-size: contain;
 }
 
 .like {
   height: 30px;
   width: 30px;
-  background-image: url("../../../../../../Projects/image/whiteheart.png");
+  background-image: url("image/whiteheart.png");
   background-size: contain;
   display: flexbox;
   float: right;
@@ -133,12 +136,12 @@ button {
 }
 
 .like:active {
-  background-image: url("../../../../../../Projects/image/heart.png");
+  background-image: url("image/heart.png");
 }
 #play {
   height: 1px;
   width: 1px;
-  background-image: url("../../../../../../Projects/image/stop.png");
+  background-image: url("image/stop.png");
   background-size: contain;
 }
 .top {
@@ -172,13 +175,12 @@ button {
   display: flex;
   float: none;
   margin: auto;
-  margin-left:50px;
   padding: 20px;
-  width: 1000px;
+  width: 90%;
   height: 100px;
   text-align: center;
   justify-content: center;
-  background-color: rgb(65, 65, 65);
+  background-color: rgb(223, 223, 223);
   border-style: solid;
   border-width: 2px;
   border-radius: 20px;
@@ -189,7 +191,9 @@ button {
 }
 
 .category {
-  margin-left: 0px;
+  display: flex;
+  float: unset;
+  margin-left: auto;
   margin-top: 60px;
   margin-bottom: auto;
 }
@@ -200,18 +204,34 @@ button {
   cursor: pointer;
   display: inline-flex;
   padding: 50px;
+  margin: auto;
   width: 80px;
   height: 80px;
+  justify-content: center;
   border-style: solid;
+  align-items: center;
+  overflow: hidden;
 }
-
+.wrap {
+  display: inline-flex;
+}
+.playlistscroll {
+  display: block;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  width: 10px;
+  height: 10px;
+  border: 0ch;
+}
 .icon {
   display: block;
   width: 40px;
   height: 40px;
   justify-content: center;
   align-items: center;
-  background-image: url("../../../../../../Projects/image/usericon.png");
+  background-image: url("image/usericon.png");
   background-size: contain;
 }
 
@@ -219,7 +239,7 @@ button {
 
 
 
-@media (max-width: 1700px) {
+@media (max-width: 1000px) {
   .main {
     width: 100%;
     text-align: center;
@@ -254,8 +274,19 @@ button {
   .nowpart {
     height: 100px;
   }
+  .player {
+    display: flex;
+    height: 100%;
+    width: 100%;
+  }
 }
-
+@media (max-width: 800px) {
+  .playlist {
+    display: inline;
+    float: inline;
+    padding: 50px;
+  }
+}
 @media (max-width: 600px) {
   .line {
     margin-bottom: 80px;
@@ -265,28 +296,16 @@ button {
   background-color: rgba(0, 0, 0, 0.212);
 }
 
-#celebrity {
-  background-image: url("../../../../../../Projects/image/celebrity.jpg");
-  background-size: contain;
-}
-
-#lilac {
-  background-image: url("../../../../../../Projects/image/lilac.jpg");
-  background-size: contain;
-}
-
-#chatshire {
-  background-image: url("../../../../../../Projects/image/chatshire.jpg");
-  background-size: contain;
-}
 
 
 
 #slider {
-  margin: 50px;
+  margin: 0 auto;
   margin-left: 100px;
-  width: 25%;
+  width: 1200px;
   max-width: 100%;
+  text-align: center;
+  z-index: -1;
 }
 
 #slider input[type=radio] {
@@ -328,13 +347,13 @@ button {
 
 #slides .inner {
   transition: margin-left 800ms cubic-bezier(0.0770, 0.000, 0.175, 1.000);
-  width: 500%; 
+  width: 500%;
   line-height: 0;
   height: 200px;
-} 
+}
 
 #slides .slide {
-  width: 20%; 
+  width: 20%;
   float: left;
   display: flex;
   justify-content: center;
@@ -363,14 +382,13 @@ button {
   padding: 10px;
 }
 
-#controls {
+#controls1 {
   margin: -130px 0 0 0;
   width: 100%;
   height: 50px;
-  z-index: 3;
   position: relative;
 }
-#controls label {
+#controls1 label {
   transition: opacity 0.2s ease-out;
   display: none;
   width: 50px;
@@ -378,26 +396,26 @@ button {
   background-color: #333;
   color: #333;
 }
-#controls label:hover {
+#controls1 label:hover {
   opacity: 1;
 }
 
-#slide1:checked ~ #controls label:nth-child(2),
-#slide2:checked ~ #controls label:nth-child(3),
-#slide3:checked ~ #controls label:nth-child(4),
-#slide4:checked ~ #controls label:nth-child(5),
-#slide5:checked ~ #controls label:nth-child(1)
+#slide1:checked ~ #controls1 label:nth-child(2),
+#slide2:checked ~ #controls1 label:nth-child(3),
+#slide3:checked ~ #controls1 label:nth-child(4),
+#slide4:checked ~ #controls1 label:nth-child(5),
+#slide5:checked ~ #controls1 label:nth-child(1)
 {
   background: url(https://image.flaticon.com/icons/svg/130/130884.svg) no-repeat;
   float: right;
   margin: 0 -50px 0 0;
   display: block;
 }
-#slide1:checked ~ #controls label:nth-child(5),
-#slide2:checked ~ #controls label:nth-child(1),
-#slide3:checked ~ #controls label:nth-child(2),
-#slide4:checked ~ #controls label:nth-child(3),
-#slide5:checked ~ #controls label:nth-child(4)
+#slide1:checked ~ #controls1 label:nth-child(5),
+#slide2:checked ~ #controls1 label:nth-child(1),
+#slide3:checked ~ #controls1 label:nth-child(2),
+#slide4:checked ~ #controls1 label:nth-child(3),
+#slide5:checked ~ #controls1 label:nth-child(4)
 {
   background: url(https://image.flaticon.com/icons/svg/130/130882.svg) no-repeat;
   float: left;
@@ -425,4 +443,47 @@ button {
 #slide5:checked ~ #bullets label:nth-child(5)
 {
   background: #333;
+}
+
+
+
+#controls2 {
+  margin: -130px 0 0 0;
+  width: 100%;
+  height: 50px;
+  position: relative;
+}
+#controls2 label {
+  transition: opacity 0.2s ease-out;
+  display: none;
+  width: 50px;
+  height: 50px;
+  background-color: #333;
+  color: #333;
+}
+#controls2 label:hover {
+  opacity: 1;
+}
+
+#slide1:checked ~ #controls2 label:nth-child(2),
+#slide2:checked ~ #controls2 label:nth-child(3),
+#slide3:checked ~ #controls2 label:nth-child(4),
+#slide4:checked ~ #controls2 label:nth-child(5),
+#slide5:checked ~ #controls2 label:nth-child(1)
+{
+  background: url(https://image.flaticon.com/icons/svg/130/130884.svg) no-repeat;
+  float: right;
+  margin: 0 -50px 0 0;
+  display: block;
+}
+#slide1:checked ~ #controls2 label:nth-child(5),
+#slide2:checked ~ #controls2 label:nth-child(1),
+#slide3:checked ~ #controls2 label:nth-child(2),
+#slide4:checked ~ #controls2 label:nth-child(3),
+#slide5:checked ~ #controls2 label:nth-child(4)
+{
+  background: url(https://image.flaticon.com/icons/svg/130/130882.svg) no-repeat;
+  float: left;
+  margin: 0 0 0 -50px;
+  display: block;
 }

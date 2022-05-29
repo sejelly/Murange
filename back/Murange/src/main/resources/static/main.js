@@ -1,9 +1,5 @@
 //
 'use strict';
-
-const bodyParser = require('body-parser')
-app.use(bodyParser.urlencoded({ extended: false }))
-
 function onSignIn(googleUser) {
     var profile = googleUser.getBasicProfile();
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
@@ -28,7 +24,7 @@ function onSignIn(googleUser) {
   navigator.mediaDevices.enumerateDevices()
   .then(getVideoInputs)
   .catch(errorCallback);
- 
+
 function getVideoInputs(mediaDevices){
       mediaDevices.forEach(mediaDevice => {
         if (mediaDevice.kind === 'videoinput') {
@@ -50,3 +46,48 @@ navigator.mediaDevices.getUserMedia(this.getMediaConstraints())
     this._webcamElement.style.transform = "scale(-1,1)";
 }
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faGoogle} from '@fortawesome/free-brands-svg-icons';
+import './App.scss';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
+
+//0529
+
+function App() {
+  const [ data, setData ] = useState(null);
+  const google = <FontAwesomeIcon icon={faGoogle} size="10x"/>;
+  const oAuthURL =
+  `https://accounts.google.com/o/oauth2/v2/auth?client_id=483993169934-7u13102b2s7g4mjemkp6htotpeqdkmes.apps.googleusercontent.com&response_type=token&redirect_uri=http://localhost:5500&scope=https://www.googleapis.com/auth/userinfo.email`
+  const oAuthHandler = () => {
+    window.location.assign(oAuthURL);
+  }
+
+  useEffect( async () => {
+    const url = new URL(window.location.href);
+    const hash = url.hash;
+    if (hash) {
+      const accessToken = hash.split("=")[1].split("&")[0];
+      await axios.get('https://www.googleapis.com/oauth2/v2/userinfo?access_token=' + accessToken, {
+        headers: {
+          authorization: `token ${accessToken}`,
+          accept: 'application/json'
+        }})
+        .then(data => {
+          console.log(data);
+          setData(data);
+      }).catch(e => console.log('oAuth token expired'));
+    }
+  }, [])
+
+  return (
+    <div>
+      <button id="oAuthBtn" onClick={oAuthHandler}>
+        {google}
+        <div id="comment">구글 OAuth</div>
+      </button>
+    </div>
+  );
+}
+
+export default App;
