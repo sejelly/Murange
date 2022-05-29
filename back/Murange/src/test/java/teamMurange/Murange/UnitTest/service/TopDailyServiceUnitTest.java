@@ -59,6 +59,7 @@ public class TopDailyServiceUnitTest {
 
         // then
         assertEquals(topDailyList.size(), getStubTopDailyList().size());
+        assertEquals(topDaily1.getRank(), getStubTopDailyList().get(0).getRank());
         // 실제 인기 음악 0순위가 저장되었는지 확인
         //System.out.println(topDaily1.getRank());
         //System.out.println(getStubTopDailyList().get(0).getRank());
