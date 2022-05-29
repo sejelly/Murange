@@ -29,7 +29,16 @@
 
 
     <main class="main">
+
+        <!--데이터 주고받는 코드-->
+
+
+        <!--연습한 코드-->
         <script type="text/javascript">
+                function change(){
+                        var changed = document.getElementById('sidebar').style.display = "none";
+                }  
+
 
                 //로그인 후에 계정 정보 백으로 전송
                 $(document).ready(function(){
@@ -43,60 +52,9 @@
                      dataType:'json',
                       success : function(data){
                          alert('계정 정보 전송 성공');
-                }
-            });
-        });
-    });
-
-
-        //처음 페이지 로딩시 받아올 데이터
-        $(document).ready(function() {
-            var popular_list_today;
-                //일간 인기음악 리스트 불러오기
-                $.ajax({
-                    url : "/recommend/today",
-                    data : 'get',
-                    contentType:"application/json;charset=UTF-8",
-                    dataType : "json",
-                    success : function(data) {
-                        console.log("loading success");
-                        popular_list_today = data;
-                    },
-                    error : function() {
-                        //alert('인기음악 로딩 에러');
                     }
-                });
-
-                var popular_list_weekly;
-                //일간 인기음악 리스트 불러오기
-                $.ajax({
-                    url : "/recommend/weekly",
-                    data : 'get',
-                    contentType:"application/json;charset=UTF-8",
-                    dataType : "json",
-                    success : function(data) {
-                        console.log("loading success");
-                        popular_list_weekly = data;
-                    },
-                    error : function() {
-                        //alert('주간 인기음악 로딩 에러');
-                    }
-                });
-
-                var emotion_list;
-                //감정별 음악 불러오기
-                $.ajax({
-                    url : "/recommend/userdata.id",
-                    data : 'get',
-                    contentType:"application/json;charset=UTF-8",
-                    dataType : "json",
-                    success : function(data) {
-                        console.log("loading success");
-                        emotion_list = data;
-                    },
-                    error : function() {
-                        //alert('감정별 음악 로딩 에러');
-                    }
+                    });
+                    });
                 });
 
                 var userdata;
@@ -116,8 +74,91 @@
                 });
 
 
+        //처음 페이지 로딩시 받아올 데이터
+        $(document).ready(function() {
 
-         });
+            //추천음악 id 받아오기
+            $.ajax({
+                url : "/recommend",
+                data : 'get',
+                 contentType:"application/json;charset=UTF-8",
+                   dataType : "json",
+                 success : function(data) {
+                      console.log("loading success");
+                      //반복문으로 리스트에서 id 가져오기
+                      var step;
+                      for (step = 1; step < 11; step++) {
+                        document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;
+                        document.getElementById('pl1_music'+step).style.backgroundImage = url(data[step-1].img_url);
+                        }
+                 },
+                 error : function() {
+                    //alert('추천 음악 로딩 에러');
+                 }
+                });
+
+                //일간 인기음악 id 받아오기
+                $.ajax({
+                url : "/recommend/today",
+                data : 'get',
+                 contentType:"application/json;charset=UTF-8",
+                   dataType : "json",
+                 success : function(data) {
+                      console.log("loading success");
+                      //반복문으로 리스트에서 id 가져오기
+                      var step;
+                      for (step = 1; step < 11; step++) {
+                        document.getElementById('pl2_music'+step).innerHTML=data[step-1].id;
+                        document.getElementById('pl2_music'+step).style.backgroundImage = url(data[step-1].img_url);
+                        }
+                 },
+                 error : function() {
+                    //alert('일간 인기 음악 로딩 에러');
+                 }
+                });
+
+                //주간 인기음악 id 받아오기
+                $.ajax({
+                url : "/recommend/weekly",
+                data : 'get',
+                 contentType:"application/json;charset=UTF-8",
+                   dataType : "json",
+                 success : function(data) {
+                      console.log("loading success");
+                      //반복문으로 리스트에서 id 가져오기
+                      var step;
+                      for (step = 1; step < 11; step++) {
+                        document.getElementById('pl3_music'+step).innerHTML=data[step-1].id;
+                        document.getElementById('pl3_music'+step).style.backgroundImage = url(data[step-1].img_url);
+                        }
+                 },
+                 error : function() {
+                    //alert('주간 인기 음악 로딩 에러');
+                 }
+                });
+
+
+            //음악 재생 코드
+            $(document).ready(function(){
+                  $('.playlist').click(function(){ 
+                    alert('아이디는 '+event.srcElement.id+' innerHTML은 '+document.getElementById(event.srcElement.id).innerHTML);
+                    $.ajax({
+                        url : "play/"+document.getElementById(event.srcElement.id).innerHTML,
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            console.log("loading success");
+                            
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                    });
+                });
+            });
+        });
+
         </script>
         <div style="min-width: max-content; align-items:center;" >
             <div id="face" onclick="location.href='face.html'"><h1>오늘의 기분을 알아볼게요</h1></div>
@@ -128,8 +169,6 @@
                 <input type="radio" name="slider" id="slide1" checked>
                 <input type="radio" name="slider" id="slide2">
                 <input type="radio" name="slider" id="slide3">
-                <input type="radio" name="slider" id="slide4">
-                <input type="radio" name="slider" id="slide5">
 
                 <div id="slides">
                     <div id="overflow">
@@ -138,11 +177,11 @@
                             <div class="slide slide_1">
                                 <div class="slide-content">
                                     <ul>
-                                        <li class="playlist" onclick="location.href='playlist.html'" >1</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" >2</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" >3</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" >4</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" >5</li>
+                                        <li class="playlist" onclick="" id="pl1_music1" >1</li>
+                                        <li class="playlist" onclick="" id="pl1_music2">2</li>
+                                        <li class="playlist" onclick="" id="pl1_music3">3</li>
+                                        <li class="playlist" onclick="" id="pl1_music4">4</li>
+                                        <li class="playlist" onclick="" id="pl1_music5">5</li>
                                     </ul>
                                 </div>
                             </div>
@@ -150,11 +189,11 @@
                             <div class="slide slide_2">
                                 <div class="slide-content">
                                     <ul>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
+                                        <li class="playlist" onclick="" id="pl1_music6">6</li>
+                                        <li class="playlist" onclick="" id="pl1_music7">7</li>
+                                        <li class="playlist" onclick="" id="pl1_music8">8</li>
+                                        <li class="playlist" onclick="" id="pl1_music9">9</li>
+                                        <li class="playlist" onclick="" id="pl1_music10">10</li>
                                     </ul>
                                 </div>
                             </div>
@@ -162,35 +201,11 @@
                             <div class="slide slide_3">
                                 <div class="slide-content">
                                     <ul>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="slide slide_4">
-                                <div class="slide-content">
-                                    <ul>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
-                                    </ul>
-                                </div>
-                            </div>
-
-                            <div class="slide slide_5">
-                                <div class="slide-content">
-                                    <ul>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                        <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
+                                        <li class="playlist" onclick="" id="pl1_music6" >6</li>
+                                        <li class="playlist" onclick="" id="pl1_music7">7</li>
+                                        <li class="playlist" onclick="" id="pl1_music8">8</li>
+                                        <li class="playlist" onclick="" id="pl1_music9">9</li>
+                                        <li class="playlist" onclick="" id="pl1_music10">10</li>
                                     </ul>
                                 </div>
                             </div>
@@ -203,15 +218,11 @@
                     <label for="slide1"></label>
                     <label for="slide2"></label>
                     <label for="slide3"></label>
-                    <label for="slide4"></label>
-                    <label for="slide5"></label>
                 </div>
                 <div id="bullets">
                     <label for="label1"></label>
                     <label for="label2"></label>
                     <label for="label3"></label>
-                    <label for="label4"></label>
-                    <label for="label5"></label>
                 </div>
 
             </div>
@@ -219,7 +230,7 @@
 
         <br>
 
-        <div class="category"><h1>지금 가장 인기 있는 플레이리스트</h1></div>
+        <div class="category"><h1> 주간 인기 플레이리스트</h1></div>
         <hr class="line">
         <div id="slider">
 
@@ -236,11 +247,11 @@
                         <div class="slide slide_1">
                             <div class="slide-content">
                                 <ul>
-                                    <li class="playlist" onclick="location.href='playlist.html'" >popular_list[0].title</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" >2</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" >3</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" >4</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" >5</li>
+                                    <li class="playlist" onclick="" id="pl2_music1" >1</li>
+                                    <li class="playlist" onclick="" id="pl2_music2">2</li>
+                                    <li class="playlist" onclick="" id="pl2_music3">3</li>
+                                    <li class="playlist" onclick="" id="pl2_music4">4</li>
+                                    <li class="playlist" onclick="" id="pl2_music5">5</li>
                                 </ul>
                             </div>
                         </div>
@@ -248,11 +259,11 @@
                         <div class="slide slide_2">
                             <div class="slide-content">
                                 <ul>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
+                                    <li class="playlist" onclick="" id="pl2_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl2_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl2_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl2_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl2_music10">10</li>
                                 </ul>
                             </div>
                         </div>
@@ -260,11 +271,11 @@
                         <div class="slide slide_3">
                             <div class="slide-content">
                                 <ul>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
+                                    <li class="playlist" onclick="" id="pl2_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl2_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl2_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl2_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl2_music10">10</li>
                                 </ul>
                             </div>
                         </div>
@@ -272,11 +283,11 @@
                         <div class="slide slide_4">
                             <div class="slide-content">
                                 <ul>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
+                                    <li class="playlist" onclick="" id="pl2_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl2_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl2_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl2_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl2_music10">10</li>
                                 </ul>
                             </div>
                         </div>
@@ -284,11 +295,11 @@
                         <div class="slide slide_5">
                             <div class="slide-content">
                                 <ul>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music6" >6</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music7">7</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music8">8</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music9">9</li>
-                                    <li class="playlist" onclick="location.href='playlist.html'" id="pl1_music10">10</li>
+                                    <li class="playlist" onclick="" id="pl2_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl2_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl2_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl2_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl2_music10">10</li>
                                 </ul>
                             </div>
                         </div>
@@ -317,21 +328,102 @@
 
         <br>
 
-        <div class="category"><h1>지금 가장 인기 있는 플레이리스트</h1></div>
-        <hr class="line">
-        <div class="wrap">
-            <button class="playlist" class="playlistscroll" id="lscroll">이전</button>
-            <ul class="rolling">
-                <li class="playlist" onclick="location.href='playlist.html'" id="celebrity" >2</li>
-                <li class="playlist" onclick="location.href='playlist.html'" id="chatshire">3</li>
-                <li class="playlist" onclick="location.href='playlist.html'" id="lilac">4</li>
-                <li class="playlist" onclick="location.href='playlist.html'" >5</li>
-                <li class="playlist" onclick="location.href='playlist.html'" >6</li>
-            </ul>
-            <button class="playlist"class="playlistscroll" id="rscroll">다음</button>
+        <div class="category"><h1>감정기반 플레이리스트</h1></div>
+          <hr class="line">
+          <div id="slider">
+
+            <input type="radio" name="slider" id="slide1">
+            <input type="radio" name="slider" id="slide2">
+            <input type="radio" name="slider" id="slide3">
+            <input type="radio" name="slider" id="slide4">
+            <input type="radio" name="slider" id="slide5">
+
+            <div id="slides">
+                <div id="overflow">
+                    <div class="inner">
+
+                        <div class="slide slide_1">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl3_music1" >1</li>
+                                    <li class="playlist" onclick="" id="pl3_music2">2</li>
+                                    <li class="playlist" onclick="" id="pl3_music3">3</li>
+                                    <li class="playlist" onclick="" id="pl3_music4">4</li>
+                                    <li class="playlist" onclick="" id="pl3_music5">5</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="slide slide_2">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl3_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl3_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl3_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl3_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl3_music10">10</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="slide slide_3">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl3_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl3_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl3_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl3_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl3_music10">10</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="slide slide_4">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl3_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl3_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl3_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl3_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl3_music10">10</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="slide slide_5">
+                            <div class="slide-content">
+                                <ul>
+                                    <li class="playlist" onclick="" id="pl3_music6" >6</li>
+                                    <li class="playlist" onclick="" id="pl3_music7">7</li>
+                                    <li class="playlist" onclick="" id="pl3_music8">8</li>
+                                    <li class="playlist" onclick="" id="pl3_music9">9</li>
+                                    <li class="playlist" onclick="" id="pl3_music10">10</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div id="controls2">
+                <label for="slide1"></label>
+                <label for="slide2"></label>
+                <label for="slide3"></label>
+                <label for="slide4"></label>
+                <label for="slide5"></label>
+            </div>
+            <div id="bullets">
+                <label for="label1"></label>
+                <label for="label2"></label>
+                <label for="label3"></label>
+                <label for="label4"></label>
+                <label for="label5"></label>
+            </div>
+
+        </div>
         </div>
         <br>
-        </div>
         <div id="sidebar">
             <div class="musiclist" id="music1" ><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
             <div class="musiclist"id="music2" ><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
@@ -343,19 +435,9 @@
             <div class="musiclist"id="music8"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
             <div class="musiclist"id="music9"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
             <div class="musiclist"id="music10"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist" id="music11"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music12"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music13"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music14"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music15"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music16"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music17"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music18"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music19"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-            <div class="musiclist"id="music20"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
             <div class="musicnow">
                 <div class="nowpart"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-                <div class="player"><div>이전</div><div id="play"></div><div>다음</div></div>
+                <div class="player"><button id="invisible" onclick='change()'>접기</button><div>이전</div><div id="play"></div><div>다음</div></div>
             </div>
         </div>
     </main>
