@@ -25,9 +25,9 @@ public class TopDailyServiceUnitTest {
     private List<TopDaily> getStubTopDailyList() {
         List<TopDaily> topDailyList =  new ArrayList<>();
 
-        Music music1 = Music.builder().id(1L).singer("bts").title("butter").build();
-        Music music2 = Music.builder().id(2L).singer("10cm").title("americano").build();
-        Music music3 = Music.builder().id(3L).singer("jason").title("I'm Yours").build();
+        Music music1 = Music.builder().singer("bts").title("butter").build();
+        Music music2 = Music.builder().singer("10cm").title("americano").build();
+        Music music3 = Music.builder().singer("jason").title("I'm Yours").build();
 
         TopDaily topDaily1 = TopDaily.builder().music(music1).rank(0).build();
         TopDaily topDaily2 = TopDaily.builder().music(music2).rank(1).build();
@@ -49,9 +49,9 @@ public class TopDailyServiceUnitTest {
         // when
         List<TopDaily> topDailyList = topDailyRepository.findAll();
 
-        Music music1 = Music.builder().id(1L).singer("bts").title("butter").build();
-        Music music2 = Music.builder().id(2L).singer("10cm").title("americano").build();
-        Music music3 = Music.builder().id(3L).singer("jason").title("I'm Yours").build();
+        Music music1 = Music.builder().singer("bts").title("butter").build();
+        Music music2 = Music.builder().singer("10cm").title("americano").build();
+        Music music3 = Music.builder().singer("jason").title("I'm Yours").build();
 
         TopDaily topDaily1 = TopDaily.builder().music(music1).rank(0).build();
         TopDaily topDaily2 = TopDaily.builder().music(music2).rank(1).build();

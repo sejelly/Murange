@@ -25,7 +25,7 @@ public class LikeMusicServiceUnitTest {
 
     private LikeMusic getStubLikeMusic () {
         User user = User.builder().name("사용자이름").build();
-        Music music = Music.builder().id(1L).title("노래제목").build();
+        Music music = Music.builder().title("노래제목").build();
         LikeMusic likeMusic = LikeMusic.builder().user(user).music(music).build();
 
         return likeMusic;

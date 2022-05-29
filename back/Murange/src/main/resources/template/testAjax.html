@@ -20,7 +20,7 @@
     //$(document).ready(function() {
         $("button").click(function() {
             $.ajax({
-                url : "http://localhost:8080/all",
+                url : "http://localhost:8080/testSearchAll",
                 data : 'get',
                 contentType:"application/json;charset=UTF-8",
                 dataType : "json",
@@ -38,7 +38,7 @@
 
     $("#button2").click(function() {
         $.ajax({
-            url : "http://localhost:8080/one",
+            url : "http://localhost:8080/testSearchOne",
             data : 'get',
             contentType:"application/json;charset=UTF-8",
             dataType : "json",
@@ -61,7 +61,8 @@
             $.ajax({
                 type:'post',   //post 방식으로 전송
                 contentType:"application/json;charset=UTF-8",
-                url:'http://localhost:8080/url', data : JSON.stringify(inputData),
+                url:'http://localhost:8080/testCreate',
+                data : JSON.stringify(inputData),
                 dataType:'json',
                 success : function(data){
                     console.log(data)

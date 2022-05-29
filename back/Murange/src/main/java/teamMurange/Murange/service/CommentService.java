@@ -8,6 +8,8 @@ import teamMurange.Murange.domain.Playlist;
 import teamMurange.Murange.domain.User;
 import teamMurange.Murange.dto.CommentRequestDto;
 import teamMurange.Murange.repository.CommentRepository;
+import teamMurange.Murange.repository.PlaylistRepository;
+import teamMurange.Murange.repository.UserRepository;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,6 +20,9 @@ import java.util.List;
 public class CommentService {
 
     private final CommentRepository commentRepository;
+    private final UserRepository userRepository;
+    private final PlaylistRepository playlistRepository;
+
 
     // 댓글 조회 (playlist_id로)
     @Transactional(readOnly = true)
@@ -28,14 +33,14 @@ public class CommentService {
 
     // 댓글 입력
     public void createComment(CommentRequestDto commentRequestDto) {
-        // User user = usersRepository.getById(commentRequestDto.getUser_id());
-        // Playlist playlist = playlistRepository.getById(commentRequestDto.getPlaylist_id());
+        User user = userRepository.getById(commentRequestDto.getUser_id());
+        Playlist playlist = playlistRepository.getById(commentRequestDto.getPlaylist_id());
         String newContent = commentRequestDto.getContents();
 
         LocalDate date = LocalDate.now();
 
-        Comment comment = Comment.builder().contents(newContent).createdAt(date)
-                /*.userComment(user).playlistComment(playlist)*/.build();
+        Comment comment = Comment.builder().userComment(user).playlistComment(playlist).contents(newContent).createdAt(date)
+                .build();
         commentRepository.save(comment);
     }
 

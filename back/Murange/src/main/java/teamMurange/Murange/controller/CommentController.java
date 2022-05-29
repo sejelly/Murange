@@ -13,8 +13,6 @@ import teamMurange.Murange.repository.CommentRepository;
 import teamMurange.Murange.service.CommentService;
 import teamMurange.Murange.service.MusicService;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -38,29 +36,27 @@ public class CommentController {
 
 
     @ApiOperation(value = "테스트용 전체 조회", notes = "테스트용")
-    // @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
-    @GetMapping("/all")
+    @GetMapping("/testSearchAll")
     @ResponseBody
-    public List<Map<String,Object>> getComments22(@RequestParam Map<String, Object> params,  HttpServletRequest request, HttpServletResponse response) throws Exception, Exception {
+    public ResponseEntity getComments22() throws Exception, Exception {
         List<Comment> comment = commentRepository.findAll();
 
         List<Map<String,Object>> returnMap = new ArrayList<>();
-        for (int i = 0; i < 5 ; i ++) {
+        for (int i = 0; i < comment.size() ; i ++) {
             Map<String,Object> map = new HashMap<>();
             map.put("contents", comment.get(i).getContents());
             map.put("createdAt", comment.get(i).getCreatedAt());
             returnMap.add(map);
         }
-        //returnMap.put("contents", comment.getContents());
-        //returnMap.put("createdAt", comment.getCreatedAt());
-        return returnMap;
+
+        return new ResponseEntity(returnMap, HttpStatus.OK);
     }
 
-    @GetMapping("/one")
+    @ApiOperation(value = "테스트용 하나 조회", notes = "테스트용")
+    @GetMapping("/testSearchOne")
     @ResponseBody
-    public Map<String,Object> getComments33(@RequestParam Map<String, Object> params,  HttpServletRequest request, HttpServletResponse response) throws Exception, Exception {
-        Comment comment = commentRepository.findAll().get(0);
-        System.out.println(comment);
+    public Map<String,Object> getComments33() throws Exception, Exception {
+        Comment comment = commentRepository.findAll().get(1);
 
         Map<String,Object> returnMap = new HashMap<>();
         returnMap.put("contents", comment.getContents());
@@ -68,10 +64,21 @@ public class CommentController {
         return returnMap;
     }
 
-
+    @ApiOperation(value = "테스트용 하나 선택해서 조회", notes = "테스트용")
     @ResponseBody
-    // @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
-    @PostMapping("/url")
+    @GetMapping("/testSearchOne/{comment-id}")
+    public ResponseEntity test22(@PathVariable(value = "comment-id") Long commentId) throws Exception {
+        Comment comment = commentRepository.findAll().get(Math.toIntExact(commentId));
+        Map<String,Object> returnMap = new HashMap<>();
+        returnMap.put("contents", comment.getContents());
+        returnMap.put("createdAt", comment.getCreatedAt());
+        return new ResponseEntity(returnMap, HttpStatus.OK);
+
+    }
+
+    @ApiOperation(value = "테스트용 등록", notes = "테스트용")
+    @ResponseBody
+    @PostMapping("/testCreate")
     public ResponseEntity test(@RequestBody Map<String, Object> inputData) throws Exception {
         String contents = (String) inputData.get("contents");
         CommentRequestDto commentRequestDto = CommentRequestDto.builder().contents(contents).build();
@@ -79,13 +86,20 @@ public class CommentController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @ApiOperation(value = "댓글 등록", notes = "댓글 등록하기")
+    @ResponseBody
+    @PostMapping("/comments")
+    public ResponseEntity saveComment(@RequestBody Map<String, Object> inputData) throws Exception {
+        String contents = (String) inputData.get("contents");
+        Long userId = (Long) inputData.get("user-id");
+        Long playlistId = (Long) inputData.get("playlist-id");
 
-//    ApiOperation(value = "댓글 등록", notes = "댓글 등록하기")
-//    @PostMapping("/comments")
-//    public ResponseEntity saveComment(@RequestBody @Validated CommentRequestDto commentRequestDto) {
-//        commentService.createComment(commentRequestDto);
-//        return new ResponseEntity(HttpStatus.OK);
-//    }@
+        CommentRequestDto commentRequestDto = CommentRequestDto.builder().playlist_id(playlistId).user_id(userId).contents(contents).build();
+        commentService.createComment(commentRequestDto);
+        return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    //---------------------------------
 
     @ApiOperation(value = "댓글 수정", notes = "댓글 수정하기")
     @PatchMapping("/comments/{comments-id}")
@@ -102,4 +116,28 @@ public class CommentController {
         commentService.deleteComment(commentId);
         return new ResponseEntity(HttpStatus.OK);
     }
+
+//    @ApiOperation(value = "댓글 등록", notes = "댓글 등록하기")
+//    @ResponseBody
+//    @PostMapping("/comments")
+//    public ResponseEntity saveComment(@RequestBody @Validated CommentRequestDto commentRequestDto) {
+//        commentService.createComment(commentRequestDto);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
+//
+//    @ApiOperation(value = "댓글 수정", notes = "댓글 수정하기")
+//    @PatchMapping("/comments/{comments-id}")
+//    public ResponseEntity updateComment(
+//            @PathVariable(value = "comments-id") Long commentId ,
+//            @RequestBody @Validated CommentRequestDto comment) {
+//        commentService.updateComment(commentId, comment);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
+//
+//    @ApiOperation(value = "댓글 삭제", notes = "댓글 삭제하기")
+//    @DeleteMapping("/comments/{comments-id}")
+//    public ResponseEntity deleteComment (@PathVariable(value = "comments-id") Long commentId) {
+//        commentService.deleteComment(commentId);
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
 }

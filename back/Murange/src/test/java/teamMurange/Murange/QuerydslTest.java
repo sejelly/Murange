@@ -20,6 +20,7 @@ import teamMurange.Murange.repository.MusicRepository;
 
 import javax.persistence.EntityManager;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.List;
 
@@ -59,7 +60,7 @@ public class QuerydslTest {
         Long userIdCond = 10L;
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
         User user1 = User.builder().id(10L).name("user1").build();
-        Calendar calendar1 = Calendar.builder().user(user1).date(new Date()).firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();
+        Calendar calendar1 = Calendar.builder().user(user1).date(LocalDate.now()).firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();
         em.persist(user1);
         em.persist(calendar1);
 

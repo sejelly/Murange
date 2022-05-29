@@ -19,7 +19,7 @@ public class Calendar {
     private Long id;
 
     @Column(name = "date")
-    private Date date;
+    private LocalDate date;
 
     private Emotion firstEmotion;
 
@@ -30,7 +30,7 @@ public class Calendar {
     private User user;
 
     @Builder
-    public Calendar(Date date, Emotion firstEmotion, Emotion secondEmotion, User user) {
+    public Calendar(LocalDate date, Emotion firstEmotion, Emotion secondEmotion, User user) {
         this.date = date;
         this.firstEmotion = firstEmotion;
         this.secondEmotion = secondEmotion;

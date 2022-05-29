@@ -2,12 +2,14 @@ package teamMurange.Murange.domain;
 
 import lombok.Builder;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import javax.persistence.Embeddable;
 import javax.persistence.Entity;
 
 @Embeddable
 @Getter
+@NoArgsConstructor
 public class Figure {
 
     private float happiness;
