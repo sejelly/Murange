@@ -5,7 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.Date;
+import java.time.LocalDate;
 
 @Entity
 @NoArgsConstructor
@@ -14,17 +14,23 @@ import java.util.Date;
 public class TopDaily {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키 전략,,
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name="top_daily_id")
     private Long id;
+
+    private int rank;
+
+    private LocalDate date;
 
     @OneToOne
     @JoinColumn(name = "music_id")
     private Music music;
 
     @Builder
-    public TopDaily (Music music, int rank, Date date) {
+    public TopDaily (Music music, int rank, LocalDate date) {
+        this.date = date;
         this.music = music;
+        this.rank = rank;
     }
 
 }

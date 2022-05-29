@@ -22,11 +22,11 @@ public class Music {
 
     private String singer;
 
-    private String imgUrl;
+    private String img_url;
 
     private String path;
 
-    private int streamingCnt;
+    private int streaming_cnt;
 
     @Embedded
     private Figure figure;
@@ -54,20 +54,16 @@ public class Music {
         this.figure = figure;
     }
 
-    public void updateStreamingCnt() {
-        this.streamingCnt = streamingCnt +1;
-    }
-
     // 테스트용 음악 생성 빌더
     @Builder
-    public Music(Long id, String title, String imgUrl, String singer, Figure figure, int streamingCnt, Category category, Playlist playlist) {
+    public Music(Long id, String title, String img_url, String singer, Figure figure, int streaming_cnt, Category category, Playlist playlist) {
         this.figure = figure;
         this.id = id;
-        this.imgUrl = imgUrl;
+        this.img_url = img_url;
         this.title = title;
         this.singer = singer;
         this.category = category;
-        this.streamingCnt = streamingCnt;
+        this.streaming_cnt = streaming_cnt;
     }
     
 }
