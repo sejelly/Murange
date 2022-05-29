@@ -41,9 +41,26 @@ public class CommentController {
     // @CrossOrigin(origins = "http://localhost:63342", maxAge = 3600)
     @GetMapping("/all")
     @ResponseBody
-    public Map<String,Object> getComments22(@RequestParam Map<String, Object> params,  HttpServletRequest request, HttpServletResponse response) throws Exception, Exception {
+    public List<Map<String,Object>> getComments22(@RequestParam Map<String, Object> params,  HttpServletRequest request, HttpServletResponse response) throws Exception, Exception {
+        List<Comment> comment = commentRepository.findAll();
+
+        List<Map<String,Object>> returnMap = new ArrayList<>();
+        for (int i = 0; i < 5 ; i ++) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("contents", comment.get(i).getContents());
+            map.put("createdAt", comment.get(i).getCreatedAt());
+            returnMap.add(map);
+        }
+        //returnMap.put("contents", comment.getContents());
+        //returnMap.put("createdAt", comment.getCreatedAt());
+        return returnMap;
+    }
+
+    @GetMapping("/one")
+    @ResponseBody
+    public Map<String,Object> getComments33(@RequestParam Map<String, Object> params,  HttpServletRequest request, HttpServletResponse response) throws Exception, Exception {
         Comment comment = commentRepository.findAll().get(0);
-        System.out.println(comment.getContents());
+        System.out.println(comment);
 
         Map<String,Object> returnMap = new HashMap<>();
         returnMap.put("contents", comment.getContents());
