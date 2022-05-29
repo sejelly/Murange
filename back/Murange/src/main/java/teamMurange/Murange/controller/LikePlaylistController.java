@@ -15,7 +15,7 @@ import teamMurange.Murange.service.UserService;
 
 import java.util.List;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "LikePlaylist Controller"})
 @RestController
 @RequiredArgsConstructor
 public class LikePlaylistController {

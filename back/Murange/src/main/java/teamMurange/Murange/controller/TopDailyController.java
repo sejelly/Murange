@@ -15,7 +15,7 @@ import teamMurange.Murange.service.TopWeeklyService;
 
 import java.util.List;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "TopDaily Controller"})
 @RestController
 @RequiredArgsConstructor
 public class TopDailyController {

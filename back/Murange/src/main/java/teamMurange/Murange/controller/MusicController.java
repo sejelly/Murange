@@ -14,7 +14,7 @@ import teamMurange.Murange.service.*;
 
 import java.util.List;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "Music Controller"})
 @RestController
 @RequiredArgsConstructor
 public class MusicController {

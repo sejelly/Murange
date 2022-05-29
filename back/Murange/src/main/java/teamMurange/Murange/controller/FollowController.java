@@ -14,7 +14,7 @@ import teamMurange.Murange.service.UserService;
 
 import java.util.List;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "Follow Controller"})
 @RestController
 @RequiredArgsConstructor
 public class FollowController {

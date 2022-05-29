@@ -8,26 +8,29 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
-import teamMurange.Murange.domain.LikeMusic;
+import teamMurange.Murange.domain.Calendar;
+import teamMurange.Murange.domain.Comment;
+import teamMurange.Murange.repository.CommentRepository;
+import teamMurange.Murange.service.CommentService;
 import teamMurange.Murange.service.LikeMusicService;
 import teamMurange.Murange.service.MusicService;
 import teamMurange.Murange.service.UserService;
 
 import java.util.List;
 
-@Api(tags = { "LikeMusic Controller"})
+@Api(tags = { "Calendar Controller"})
 @RestController
 @RequiredArgsConstructor
-public class LikeMusicController {
+public class CalendarController {
 
     private MusicService musicService;
     private LikeMusicService likeMusicService;
     private UserService userService;
 
-    @ApiOperation(value = "좋아요한 노래 조회", notes = "사용자가 좋아요한 노래 불러오기")
-    @GetMapping("/likes/music/{user-id}")
-    public ResponseEntity getLikeMusic(@PathVariable(value = "user-id") Long userId) {
-        List<LikeMusic> likeMusicList = userService.getLikeMusicList(userId);
-        return new ResponseEntity(likeMusicList, HttpStatus.OK);
+    @ApiOperation(value = "감정 조회", notes = "사용자의 날짜별 감정 불러오기")
+    @GetMapping("/date/{user-id}")
+    public ResponseEntity getCalendar(@PathVariable(value = "user-id") Long userId) {
+        List<Calendar> calendarList = userService.getCalendarList(userId);
+        return new ResponseEntity(calendarList, HttpStatus.OK);
     }
 }

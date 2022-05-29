@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import teamMurange.Murange.dto.UserRequestDto;
 import teamMurange.Murange.service.UserService;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "User Controller"})
 @RestController
 @RequiredArgsConstructor
 public class UserController {
