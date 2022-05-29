@@ -5,9 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="../static/deco.css">
-    <link rel="stylesheet" href="../static/face.css">
-    <script defer src="../static/main.js"></script>
+    <link rel="stylesheet" href="deco.css">
+    <link rel="stylesheet" href="face.css">
+    <script defer src="main.js"></script>
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
 </head>
 <div id="sidebar"> 
@@ -50,7 +50,20 @@
     <h1 style="text-align: center; margin-top:150px;">뮤랑이가 표정을 읽고있어요...</h1>
     <div class="result">표정 분석 결과입니다.<hr>기쁨   15%<br>슬픔 5%</div>
         <video id="webcam" autoplay playsinline></video>
-    </div>
+        <canvas id="canvas" class="d-none"></canvas>
+        <script>
+            const webcamElement = document.getElementById('webcam');
+            const canvasElement = document.getElementById('canvas');
+            const webcam = new Webcam(webcamElement, 'user');
+        
+            webcam.start()
+              .then(result => {
+                console.log("webcam started");
+              })
+              .catch(err => {
+                console.log(err);
+              });
+          </script>
     <div><h1 style="text-align: center; display:block;">오늘의 기분은 편안해 보이네요. 어울리는 음악을 추천해드릴게요!</h1></div>
     <div class="again" onclick="location.href='face.html'"><h4>다시 추천받기</h4></div>
 </body>
