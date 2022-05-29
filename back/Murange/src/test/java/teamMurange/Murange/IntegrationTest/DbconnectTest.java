@@ -24,9 +24,9 @@ public class DbconnectTest {
     public void connection() throws SQLException {
         try(Connection connection = dataSource.getConnection()) {
             DatabaseMetaData metaData = connection.getMetaData();
-            log.info("URL : " + metaData.getURL());
-            log.info("DriverName : " + metaData.getDriverName());
-            log.info("UserNmae : " + metaData.getUserName());
+//            log.info("URL : " + metaData.getURL());
+//            log.info("DriverName : " + metaData.getDriverName());
+//            log.info("UserName : " + metaData.getUserName());
         }
     }
 }

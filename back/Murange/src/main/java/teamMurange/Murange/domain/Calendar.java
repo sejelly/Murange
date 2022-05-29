@@ -1,12 +1,12 @@
 package teamMurange.Murange.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.time.LocalDate;
 import java.util.Date;
-import java.util.List;
 
 @Entity
 @Getter
@@ -21,9 +21,20 @@ public class Calendar {
     @Column(name = "date")
     private Date date;
 
+    private Emotion firstEmotion;
+
+    private Emotion secondEmotion;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Builder
+    public Calendar(Date date, Emotion firstEmotion, Emotion secondEmotion, User user) {
+        this.date = date;
+        this.firstEmotion = firstEmotion;
+        this.secondEmotion = secondEmotion;
+        this.user = user;
+    }
 
 }

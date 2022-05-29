@@ -1,5 +1,6 @@
 package teamMurange.Murange.domain;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -13,15 +14,19 @@ import java.time.LocalDate;
 public class TopWeekly {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY) // 기본키 전략,,
     @Column(name="top_weekly_id")
     private Long id;
-
-    private int rank;
 
     private LocalDate date;
 
     @OneToOne
     @JoinColumn(name = "music_id")
     private Music music;
+
+    @Builder
+    public TopWeekly (Music music, LocalDate date) {
+        this.music = music;
+        this.date = date;
+    }
 }
