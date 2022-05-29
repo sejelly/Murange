@@ -14,12 +14,12 @@ import teamMurange.Murange.service.UserService;
 
 import java.util.List;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "Follow Controller"})
 @RestController
 @RequiredArgsConstructor
 public class FollowController {
 
-    private UserService userService;
+    private final UserService userService;
 
 
     @ApiOperation(value = "팔로워 조회", notes = "내가 추가한 사용자 불러오기")

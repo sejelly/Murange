@@ -13,9 +13,12 @@ import teamMurange.Murange.service.MusicService;
 import teamMurange.Murange.service.TopDailyService;
 import teamMurange.Murange.service.TopWeeklyService;
 
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-@Api(tags = { "Recommendation Controller"})
+@Api(tags = { "TopWeekly Controller"})
 @RestController
 @RequiredArgsConstructor
 public class TopWeeklyController {
@@ -36,7 +39,18 @@ public class TopWeeklyController {
     @GetMapping("/recommend/weekly")
     public ResponseEntity getTopWeekly() {
         List<MusicResponseDto> musicList = topWeeklyService.getTopWeeklyAll();
-        return new ResponseEntity(musicList, HttpStatus.OK);
+
+        List<Map<String,Object>> returnMap = new ArrayList<>();
+        for (int i = 0; i < musicList.size() ; i ++) {
+            Map<String,Object> map = new HashMap<>();
+            map.put("id", musicList.get(i).getId());
+            map.put("title", musicList.get(i).getTitle());
+            map.put("singer", musicList.get(i).getSinger());
+            map.put("img_path", musicList.get(i).getImg_url());
+            returnMap.add(map);
+        }
+
+        return new ResponseEntity(returnMap, HttpStatus.OK);
     }
 
 }

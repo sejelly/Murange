@@ -9,10 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
-import teamMurange.Murange.domain.QCategory;
-import teamMurange.Murange.domain.QUser;
+import teamMurange.Murange.domain.*;
 import teamMurange.Murange.dto.CalendarResponseDto;
 import teamMurange.Murange.dto.MusicResponseDto;
+import teamMurange.Murange.repository.CategoryRepository;
+import teamMurange.Murange.repository.MusicRepository;
+import teamMurange.Murange.repository.UserRepository;
 
 import javax.persistence.EntityManager;
 
@@ -29,6 +31,31 @@ public class MusicRepositoryTest {
 
     @Autowired
     EntityManager em;
+
+    @Autowired
+    MusicRepository musicRepository;
+    @Autowired
+    CategoryRepository categoryRepository;
+
+    @DisplayName("음악 데이터 저장")
+    @Test
+    public void start() {
+        Long category1 = categoryRepository.searchCategoryId(Emotion.angry, Emotion.sad);
+        Category category = categoryRepository.getById(category1);
+        Figure figure = Figure.builder().angry(0.1F).disgust(0.1F).happiness(0.1F).sad(0.2F).neutral(0.3F).scared(0.1F).surprised(0.1F).build();
+
+        Music music1 = Music.builder().category(category).title("title1").singer("singer1").figure(figure).build();
+        Music music2 = Music.builder().category(category).title("title2").singer("singer2").figure(figure).build();
+        Music music3 = Music.builder().category(category).title("title3").singer("singer3").figure(figure).build();
+        Music music4 = Music.builder().category(category).title("title4").singer("singer4").figure(figure).build();
+        Music music5 = Music.builder().category(category).title("title5").singer("singer5").figure(figure).build();
+        musicRepository.save(music1);
+        musicRepository.save(music2);
+        musicRepository.save(music3);
+        musicRepository.save(music4);
+        musicRepository.save(music5);
+    };
+
 
     @DisplayName("감정 카테고리별 음악 조회하기")
     @Test
