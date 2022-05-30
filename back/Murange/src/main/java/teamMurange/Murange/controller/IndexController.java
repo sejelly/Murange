@@ -17,7 +17,7 @@ public class IndexController {
     private final HttpSession httpSession;
 
     @GetMapping("/")
-    public String index(Model model, @LoginUser SessionUser user)
+    public String defaulthome(Model model, @LoginUser SessionUser user)
     {
 //        // userName을 사용할 수 있게 model에 저장
 //        // SessionUser user = (SessionUser) httpSession.getAttribute("user"); @LoginUser로 개선
@@ -29,13 +29,42 @@ public class IndexController {
     @GetMapping("/google2")
     public String google2(Model model, @LoginUser SessionUser user)
     {
+        // userName을 사용할 수 있게 model에 저장
+        user = (SessionUser) httpSession.getAttribute("user"); //
+        if(user != null){
+            model.addAttribute("user",user);
+        }
+        return "google2";
+    }
+    @GetMapping("/face")
+    public String profile(Model model, @LoginUser SessionUser user)
+    {
 //        // userName을 사용할 수 있게 model에 저장
 //        // SessionUser user = (SessionUser) httpSession.getAttribute("user"); @LoginUser로 개선
 //        if(user != null){
 //            model.addAttribute("userName",user.getName());
 //        }
-        return "google2";
+        return "pre";
     }
-
+    @GetMapping("/index")
+    public String index(Model model, @LoginUser SessionUser user)
+    {
+//        // userName을 사용할 수 있게 model에 저장
+//        // SessionUser user = (SessionUser) httpSession.getAttribute("user"); @LoginUser로 개선
+//        if(user != null){
+//            model.addAttribute("userName",user.getName());
+//        }
+        return "index";
+    }
+    @GetMapping("/playlist")
+    public String playlist(Model model, @LoginUser SessionUser user)
+    {
+//        // userName을 사용할 수 있게 model에 저장
+//        // SessionUser user = (SessionUser) httpSession.getAttribute("user"); @LoginUser로 개선
+//        if(user != null){
+//            model.addAttribute("userName",user.getName());
+//        }
+        return "playlist";
+    }
 
 }
