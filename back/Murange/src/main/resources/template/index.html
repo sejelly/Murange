@@ -98,7 +98,7 @@
 
                         },
                         error : function() {
-                            //alert('1번 에러');
+                            //alert('음악 재생 에러');
                         }
                 });
             });
@@ -125,7 +125,7 @@
 
                         },
                         error : function() {
-                            //alert('2번 에러');
+                            //alert('음악 재생 에러');
                         }
                 });
             });
@@ -150,11 +150,10 @@
 
                         },
                         error : function() {
-                            //alert('3번 에러');
+                            //alert('음악 재생 에러');
                         }
                 });
             });
-
            //음악 재생 코드-->
             $(document).ready(function(){
                 $('.playlist').click(function(){
@@ -172,12 +171,12 @@
                            //alert('음악 재생 에러');
                        }
                    });
-                   alert(document.getElementById('playtitle').innerHTML);
                    document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
                    document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
                    document.getElementById('playcover').style.backgroundImage = "url(image_arr[document.getElementById(event.srcElement.id).innerHTML].img_url)";
                });
            });
+
         });
 
         </script>
