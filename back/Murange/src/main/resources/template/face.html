@@ -7,9 +7,12 @@
     <title>Document</title>
     <link rel="stylesheet" href="../static/deco.css">
     <link rel="stylesheet" href="../static/face.css">
+    <script src="https://code.jquery.com/jquery-latest.min.js"></script>
     <script defer src="main.js"></script>
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
-    <script type="text/javascript">
+   
+   
+   <script type="text/javascript">
         $(document).ready(function() {
             // 1. 감정별 인기 음악
             $(document).ready(function(){
@@ -54,6 +57,7 @@
                            //alert('음악 재생 에러');
                        }
                    });
+                   alert(document.getElementById(event.srcElement.id).id);
                    document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
                    document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
                    document.getElementById('playcover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
@@ -64,8 +68,8 @@
 
 </head>
 <div id="sidebar_face"> 
-    <div class="musiclist" id="music1" ><div class="cover" id="cover1"></div><h1 id="title1">노래명</h1><h1 id="singer1">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music2" ><div class="cover" id="cover2"></div> <h1 id="title2">노래명</h1><h1 id="singer2">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist" id="1" ><div class="cover"></div><h1>노래명</h1><h1>가수명</h1> <div class="like"></div>df</div>
+    <div class="musiclist"id="2" ><div class="cover" id="cover2"></div> <h1 id="title2">노래명</h1><h1 id="singer2">가수명</h1> <div class="like"></div></div>
     <div class="musiclist"id="music3"><div class="cover" id="cover3"></div> <h1 id="title3">노래명</h1><h1 id="singer3">가수명</h1> <div class="like"></div></div>
     <div class="musiclist"id="music4"><div class="cover" id="cover4"></div> <h1 id="title4">노래명</h1><h1 id="singer4">가수명</h1> <div class="like"></div></div>
     <div class="musiclist"id="music5"><div class="cover" id="cover5"></div> <h1 id="title5">노래명</h1><h1 id="singer5">가수명</h1> <div class="like"></div></div>

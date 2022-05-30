@@ -171,7 +171,6 @@
                            //alert('음악 재생 에러');
                        }
                    });
-                   alert(document.getElementById(event.srcElement.id).style.backgroundImage.url)
                    document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
                    document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
                    document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
@@ -243,7 +242,6 @@
                                 <div class="slide-content">
                                     <ul>
                                         <li class="playlist" onclick="" id="pl1_music6" >6</li>
-                                        <li class="playlist" onclick="" id="pl1_music6" >6</li>
                                         <li class="playlist" onclick="" id="pl1_music7">7</li>
                                         <li class="playlist" onclick="" id="pl1_music8">8</li>
                                         <li class="playlist" onclick="" id="pl1_music9">9</li>
@@ -276,7 +274,7 @@
         <hr class="line">
         <div id="slider">
 
-            <input type="radio" name="slider" id="slide1" checked>
+            <input type="radio" name="slider" id="slide1">
             <input type="radio" name="slider" id="slide2">
             <input type="radio" name="slider" id="slide3">
             <input type="radio" name="slider" id="slide4">
@@ -448,7 +446,7 @@
                 </div>
             </div>
 
-            <div id="controls2">
+            <div id="controls1">
                 <label for="slide1"></label>
                 <label for="slide2"></label>
                 <label for="slide3"></label>
@@ -468,10 +466,7 @@
         <br>
         <div id="sidebar">
             <div class="musicnow">
-
-                
                 <div class="player"><div class="cover" id="playcover"></div> <h1 id="playtitle">노래명</h1> <h1 id="playsinger">가수명</h1> <div class="like"></div><div>이전</div><button id="play_stop" >멈춤</button><div>다음</div></div>
-
             </div>
         </div>
     </main>
