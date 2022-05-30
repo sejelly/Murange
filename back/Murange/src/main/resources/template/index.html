@@ -89,6 +89,7 @@
                             for (step = 1; step < 11; step++) {
                                 document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;
                                 document.getElementById('pl1_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('pl1_music'+step).style.backgroundSize = "contain";
                                 // console.log(data[step-1].id);
                                 // console.log(data[step-1].img_url);
                             }
@@ -96,7 +97,7 @@
 
                         },
                         error : function() {
-                            //alert('음악 재생 에러');
+                            //alert('1번 에러');
                         }
                 });
             });
@@ -115,6 +116,7 @@
                             for (step = 1; step < 11; step++) {
                                 document.getElementById('pl2_music'+step).innerHTML=data[step-1].id;
                                 document.getElementById('pl2_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('pl2_music'+step).style.backgroundSize = "contain";
                                 console.log(data[step-1].id);
                                 console.log(data[step-1].img_url);
                             }
@@ -122,7 +124,7 @@
 
                         },
                         error : function() {
-                            //alert('음악 재생 에러');
+                            //alert('2번 에러');
                         }
                 });
             });
@@ -139,6 +141,7 @@
                             for (step = 1; step < 11; step++) {
                                 document.getElementById('pl3_music'+step).innerHTML=data[step-1].id;
                                 document.getElementById('pl3_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('pl3_music'+step).style.backgroundSize = "contain";
                                 // console.log(data[step-1].id);
                                 // console.log(data[step-1].img_url);
                             }
@@ -146,30 +149,30 @@
 
                         },
                         error : function() {
-                            //alert('음악 재생 에러');
+                            //alert('3번 에러');
                         }
                 });
             });
 
-<!--            //음악 재생 코드-->
-<!--            $(document).ready(function(){-->
-<!--                  $('.playlist').click(function(){-->
-<!--                    $.ajax({-->
-<!--                        url : "http://localhost:8080/play"-->
-<!--                        data : 'get',-->
-<!--                        contentType:"application/json;charset=UTF-8",-->
-<!--                        dataType : "json",-->
-<!--                        success : function(data) {-->
-<!--                            // var data = JSON.parse(data);-->
-<!--                            // console.log("loading success");-->
-<!--                            // console.log(data);-->
-<!--                        },-->
-<!--                        error : function() {-->
-<!--                            //alert('음악 재생 에러');-->
-<!--                        }-->
-<!--                    });-->
-<!--                });-->
-<!--            });-->
+           //음악 재생 코드-->
+            $(document).ready(function(){
+                $('.playlist').click(function(){
+                   $.ajax({
+                      url : "http://localhost:8080/play",
+                       data : 'get',
+                       contentType:"application/json;charset=UTF-8",
+                       dataType : "json",
+                       success : function(data) {
+                           // var data = JSON.parse(data);
+                           // console.log("loading success");
+                           // console.log(data);
+                       },
+                       error : function() {
+                           //alert('음악 재생 에러');
+                       }
+                   });
+               });
+           });
         });
 
         </script>
