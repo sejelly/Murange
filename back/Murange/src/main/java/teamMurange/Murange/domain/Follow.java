@@ -17,11 +17,11 @@ public class Follow {
     private Long id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id") // 사용자 본인
+    @JoinColumn(name = "user") // 사용자 본인
     private User user;
 
-    @Column(name = "followee_id") // 팔로우하려는 인물
-    private Long followee;
+    @Column(name = "followee_email") // 팔로우하려는 인물
+    private String followee_email;
 
     //@JoinColumn
     //private User user;
@@ -31,9 +31,9 @@ public class Follow {
     //private User followee;
 
     @Builder
-    public Follow (User user1, Long user2) {
+    public Follow (User user1, String user2_email) {
         this.user = user1;
-        this.followee = user2;
+        this.followee_email = user2_email;
     }
 
 }
