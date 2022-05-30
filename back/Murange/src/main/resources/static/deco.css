@@ -34,12 +34,14 @@ button {
   display: fixed;
   float: right;
   position: fixed;
-  top: 75px;
-  right: 0px;
   bottom: 0px;
-  width: 30%;
-  height: 100%;
-  max-width: 400px;
+  right: 0px;
+  left: 0px;
+  height: 100px;
+  width: 100%;
+  max-width: 100%;
+  top: 75px;
+  bottom: 0px;
   z-index: 10;
 }
 .nowpart {
@@ -114,6 +116,29 @@ button {
   margin: 10px;
   background-image: url("image/celebrity.jpg");
   background-size: contain;
+}
+
+
+
+.musiclist {
+  display: none;
+}
+.musicnow {
+  display: flex;
+  position: fixed;
+  top: 100%-100px;
+  bottom: 0px;
+  left: 0%;
+  max-width: 100%;
+  max-height: 100px;
+}
+.nowpart {
+  height: 100px;
+}
+.player {
+  display: flex;
+  height: 100%;
+  width: 100%;
 }
 
 .nowpart .cover {
@@ -247,35 +272,7 @@ button {
     display: block;
     text-align: center;
   }
-  #sidebar {
-    display: block;
-    bottom: 0px;
-    right: 0px;
-    left: 0px;
-    height: 100px;
-    width: 100%;
-    max-width: 100%;
-  }
-  .musiclist {
-    display: none;
-  }
-  .musicnow {
-    display: flex;
-    position: fixed;
-    top: 100%-100px;
-    bottom: 0px;
-    left: 0%;
-    max-width: 100%;
-    max-height: 100px;
-  }
-  .nowpart {
-    height: 100px;
-  }
-  .player {
-    display: flex;
-    height: 100%;
-    width: 100%;
-  }
+
 }
 @media (max-width: 800px) {
   .playlist {
