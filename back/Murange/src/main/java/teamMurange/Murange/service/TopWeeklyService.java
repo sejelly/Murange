@@ -11,6 +11,7 @@ import teamMurange.Murange.repository.TopDailyRepository;
 import teamMurange.Murange.repository.TopWeeklyRepository;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Transactional
@@ -22,15 +23,16 @@ public class TopWeeklyService {
     private final TopDailyRepository topDailyRepository;
 
     @Transactional(readOnly = true)
-    public List<MusicResponseDto> getTopWeeklyAll () {
+    public List<Music> getTopWeeklyAll () {
         List<TopWeekly> topWeeklyList = topWeeklyRepository.findAll();
-        List<MusicResponseDto> musicResponseDtoList = null;
+        // List<MusicResponseDto> musicResponseDtoList = null;
+        List<Music> musicList = new ArrayList<>();
+
         for (TopWeekly topWeekly : topWeeklyList ) {
             Music music = topWeekly.getMusic();
-            MusicResponseDto musicResponseDto = new MusicResponseDto(music);
-            musicResponseDtoList.add(musicResponseDto);
+            musicList.add(music);
         }
-        return musicResponseDtoList;
+        return musicList;
     }
 
     // 매일 정오에 topWeekly 테이블 업데이트

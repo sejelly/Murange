@@ -76,93 +76,113 @@
 
         //처음 페이지 로딩시 받아올 데이터
         $(document).ready(function() {
-
-            //추천음악 id 받아오기
-            $.ajax({
-                url : "/recommend",
-                data : 'get',
-                 contentType:"application/json;charset=UTF-8",
-                   dataType : "json",
-                 success : function(data) {
-                      console.log("loading success");
-                      //반복문으로 리스트에서 id 가져오기
-                      var step;
-                      for (step = 1; step < 11; step++) {
-                        document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;
-                        document.getElementById('pl1_music'+step).style.backgroundImage = url(data[step-1].img_url);
-                        }
-                 },
-                 error : function() {
-                    //alert('추천 음악 로딩 에러');
-                 }
-                });
-
-                //일간 인기음악 id 받아오기
-                $.ajax({
-                url : "/recommend/today",
-                data : 'get',
-                 contentType:"application/json;charset=UTF-8",
-                   dataType : "json",
-                 success : function(data) {
-                      console.log("loading success");
-                      //반복문으로 리스트에서 id 가져오기
-                      var step;
-                      for (step = 1; step < 11; step++) {
-                        document.getElementById('pl2_music'+step).innerHTML=data[step-1].id;
-                        document.getElementById('pl2_music'+step).style.backgroundImage = url(data[step-1].img_url);
-                        }
-                 },
-                 error : function() {
-                    //alert('일간 인기 음악 로딩 에러');
-                 }
-                });
-
-                //주간 인기음악 id 받아오기
-                $.ajax({
-                url : "/recommend/weekly",
-                data : 'get',
-                 contentType:"application/json;charset=UTF-8",
-                   dataType : "json",
-                 success : function(data) {
-                      console.log("loading success");
-                      //반복문으로 리스트에서 id 가져오기
-                      var step;
-                      for (step = 1; step < 11; step++) {
-                        document.getElementById('pl3_music'+step).innerHTML=data[step-1].id;
-                        document.getElementById('pl3_music'+step).style.backgroundImage = url(data[step-1].img_url);
-                        }
-                 },
-                 error : function() {
-                    //alert('주간 인기 음악 로딩 에러');
-                 }
-                });
-
-
-            //음악 재생 코드
+            // 1. 감정별 인기 음악
             $(document).ready(function(){
-                  $('.playlist').click(function(){ 
-                    alert('아이디는 '+event.srcElement.id+' innerHTML은 '+document.getElementById(event.srcElement.id).innerHTML);
                     $.ajax({
-                        url : "play/"+document.getElementById(event.srcElement.id).innerHTML,
+                        url : "http://localhost:8080/recommend",
                         data : 'get',
                         contentType:"application/json;charset=UTF-8",
                         dataType : "json",
                         success : function(data) {
-                            console.log("loading success");
-                            
+                            // console.log(data);
+
+                            for (step = 1; step < 11; step++) {
+                                document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;
+                                document.getElementById('pl1_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                // console.log(data[step-1].id);
+                                // console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
+
                         },
                         error : function() {
                             //alert('음악 재생 에러');
                         }
-                    });
                 });
             });
+
+            // 2. 오늘의 인기 음악
+            $(document).ready(function(){
+                    $.ajax({
+                        url : "http://localhost:8080/recommend/today",
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            console.log("today");
+                            console.log(data);
+
+                            for (step = 1; step < 11; step++) {
+                                document.getElementById('pl2_music'+step).innerHTML=data[step-1].id;
+                                document.getElementById('pl2_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                console.log(data[step-1].id);
+                                console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
+
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                });
+            });
+
+            // 3. 이번주 인기 음악
+            $(document).ready(function(){
+                    $.ajax({
+                        url : "http://localhost:8080/recommend/weekly",
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            // console.log(data);
+                            for (step = 1; step < 11; step++) {
+                                document.getElementById('pl3_music'+step).innerHTML=data[step-1].id;
+                                document.getElementById('pl3_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                // console.log(data[step-1].id);
+                                // console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
+
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                });
+            });
+
+
+
+
+
+<!--            //음악 재생 코드-->
+<!--            $(document).ready(function(){-->
+<!--                  $('.playlist').click(function(){-->
+<!--                    alert('아이디는 '+event.srcElement.id+' innerHTML은 '+document.getElementById(event.srcElement.id).innerHTML);-->
+<!--                    $.ajax({-->
+<!--                        url : "play/"+document.getElementById(event.srcElement.id).innerHTML,-->
+<!--                        data : 'get',-->
+<!--                        contentType:"application/json;charset=UTF-8",-->
+<!--                        dataType : "json",-->
+<!--                        success : function(data) {-->
+<!--                            var data = JSON.parse(data);-->
+<!--                            console.log("loading success");-->
+<!--                            console.log(data);-->
+
+
+<!--                        },-->
+<!--                        error : function() {-->
+<!--                            //alert('음악 재생 에러');-->
+<!--                        }-->
+<!--                    });-->
+<!--                });-->
+<!--            });-->
         });
 
         </script>
         <div style="min-width: max-content; align-items:center;" >
             <div id="face" onclick="location.href='face.html'"><h1>오늘의 기분을 알아볼게요</h1></div>
-            <div class="category"><h1>지금 가장 인기 있는 플레이리스트</h1></div>
+            <div class="category"><h1>감정별 인기 음악</h1></div>
             <hr class="line">
             <div id="slider">
 
@@ -230,7 +250,7 @@
 
         <br>
 
-        <div class="category"><h1> 주간 인기 플레이리스트</h1></div>
+        <div class="category"><h1>오늘의 인기 음악</h1></div>
         <hr class="line">
         <div id="slider">
 
@@ -328,7 +348,7 @@
 
         <br>
 
-        <div class="category"><h1>감정기반 플레이리스트</h1></div>
+        <div class="category"><h1>이번주 인기 음악</h1></div>
           <hr class="line">
           <div id="slider">
 

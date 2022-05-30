@@ -231,12 +231,9 @@ button {
   height: 40px;
   justify-content: center;
   align-items: center;
-  background-image: url("image/usericon.png");
+
   background-size: contain;
 }
-
-
-
 
 
 @media (max-width: 1000px) {

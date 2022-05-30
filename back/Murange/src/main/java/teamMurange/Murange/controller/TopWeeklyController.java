@@ -8,7 +8,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import teamMurange.Murange.domain.Music;
 import teamMurange.Murange.dto.MusicResponseDto;
+import teamMurange.Murange.repository.MusicRepository;
 import teamMurange.Murange.service.MusicService;
 import teamMurange.Murange.service.TopDailyService;
 import teamMurange.Murange.service.TopWeeklyService;
@@ -27,6 +29,8 @@ public class TopWeeklyController {
     private final MusicService musicService;
     private final TopWeeklyService topWeeklyService;
     private final TopDailyService topDailyService;
+    private final MusicRepository musicRepository;
+
 
     @ApiOperation(value = "자정마다 topDaily, topWeekly 변경", notes = "매일 자정마다 topDaily, topWeekly 업데이트")
     @Scheduled(cron = "0 0 24 * * *")
@@ -37,8 +41,10 @@ public class TopWeeklyController {
 
     @ApiOperation(value = "주간 인기 음악 추천", notes = "메인 화면에서의 음악 추천")
     @GetMapping("/recommend/weekly")
-    public ResponseEntity getTopWeekly() {
-        List<MusicResponseDto> musicList = topWeeklyService.getTopWeeklyAll();
+    public List<Map<String,Object>> getTopWeekly() throws Exception, Exception {
+        List<Music> musicList = topWeeklyService.getTopWeeklyAll();
+
+        // List<Music> musicList = musicRepository.findAll();
 
         List<Map<String,Object>> returnMap = new ArrayList<>();
         for (int i = 0; i < musicList.size() ; i ++) {
@@ -46,11 +52,12 @@ public class TopWeeklyController {
             map.put("id", musicList.get(i).getId());
             map.put("title", musicList.get(i).getTitle());
             map.put("singer", musicList.get(i).getSinger());
-            map.put("img_path", musicList.get(i).getImg_url());
+            map.put("img_url", musicList.get(i).getImgUrl());
             returnMap.add(map);
         }
 
-        return new ResponseEntity(returnMap, HttpStatus.OK);
+        // return new ResponseEntity(musicResponseDtoList, HttpStatus.OK);
+        return returnMap;
     }
 
 }
