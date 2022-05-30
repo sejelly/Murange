@@ -25,7 +25,7 @@ public class TopDailyController {
     private final TopDailyService topDailyService;
 
     @ApiOperation(value = "자정마다 topDaily, topWeekly 변경", notes = "매일 자정마다 topDaily, topWeekly 업데이트")
-    @Scheduled(cron = "0 0 24 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public ResponseEntity updateTopDaily() {
         topDailyService.deleteAll();
         return new ResponseEntity(HttpStatus.OK);

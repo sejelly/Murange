@@ -2,19 +2,21 @@ server:
   address: localhost
   port: 8080
 spring:
+  profiles:
+    include: oauth
   mvc:
     pathmatch:
       matching-strategy: ant_path_matcher
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    password: 401868
-    url: jdbc:mysql://localhost:3306/murange_db?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC
-    username: root
+    password: kk891006!!
+    url: jdbc:mysql://localhost:3306/murangtest?useSSL=false&characterEncoding=UTF-8&serverTimezone=UTC&allowPublicKeyRetrieval=true
+    username: sejelly
   jpa:
     database: mysql
     database-platform: org.hibernate.dialect.MySQL8Dialect
     hibernate:
-      ddl-auto:  none # create
+      ddl-auto:  update # create
     properties:
       hibernate:
         show_sql: true
@@ -23,3 +25,16 @@ spring:
 # logging.level:
   # org.hibernate.SQL: debug #로그 출력용
   #org.hibernate.type: trace
+
+  thymeleaf:
+    prefix: classpath:/template/
+    suffix: .html
+  session:
+    jdbc:
+      initialize-schema: always
+    store-type: jdbc
+
+logging:
+  level:
+    root: info
+
