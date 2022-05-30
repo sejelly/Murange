@@ -47,7 +47,7 @@ public class Mp3PlayerController {
     @GetMapping("/play")
     @ResponseBody
     public void playMusic22() throws Exception, Exception {
-        String file="C:\\Users\\suyou\\Desktop\\Winter Bear ⓒmonoRM912.mp3";
+        String file="C:\\Users\\SY\\musicSample\\Winter Bear by V of BTS.mp3";
         mp3PlayerSample mp3 = new mp3PlayerSample(file);
         mp3.play();
     }

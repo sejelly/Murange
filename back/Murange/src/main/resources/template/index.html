@@ -97,7 +97,7 @@
 
                         },
                         error : function() {
-                            //alert('1번 에러');
+                            //alert('음악 재생 에러');
                         }
                 });
             });
@@ -124,7 +124,7 @@
 
                         },
                         error : function() {
-                            //alert('2번 에러');
+                            //alert('음악 재생 에러');
                         }
                 });
             });
@@ -149,30 +149,27 @@
 
                         },
                         error : function() {
-                            //alert('3번 에러');
+                            //alert('음악 재생 에러');
                         }
                 });
             });
 
-           //음악 재생 코드-->
-            $(document).ready(function(){
-                $('.playlist').click(function(){
-                   $.ajax({
-                      url : "http://localhost:8080/play",
-                       data : 'get',
-                       contentType:"application/json;charset=UTF-8",
-                       dataType : "json",
-                       success : function(data) {
-                           // var data = JSON.parse(data);
-                           // console.log("loading success");
-                           // console.log(data);
-                       },
-                       error : function() {
-                           //alert('음악 재생 에러');
-                       }
-                   });
-               });
-           });
+                //음악 재생 코드-->
+                $(document).ready(function(){
+                      $('.playlist').click(function(){
+                        $.ajax({
+                            url : "http://localhost:8080/play",
+                            data : 'get',
+                            contentType:"application/json;charset=UTF-8",
+                            dataType : "json",
+                            success : function(data) {
+                            },
+                            error : function() {
+                                alert('음악 재생 에러');
+                            }
+                        });
+                    });
+                });
         });
 
         </script>
