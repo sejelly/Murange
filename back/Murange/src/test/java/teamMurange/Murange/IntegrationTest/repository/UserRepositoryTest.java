@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.test.annotation.Commit;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.QUser;
+import teamMurange.Murange.domain.Role;
 import teamMurange.Murange.domain.User;
 import teamMurange.Murange.dto.CalendarResponseDto;
 import teamMurange.Murange.repository.UserRepository;
@@ -30,7 +31,8 @@ public class UserRepositoryTest {
 
     @Test
     public void start() {
-        User user = User.builder().name("wang").email("22@gmail.com").build();
+        User user = User.builder().name("wang").email("22@gmail.com").role(Role.GUEST).build();
+//        String name, String img_url, String email, String picture, Role role
         userRepository.save(user);
 
     };
