@@ -87,7 +87,6 @@
 
                             for (step = 1; step < 11; step++) {
                                 singer_arr[step-1] = data[step-1].singer;
-                                image_arr[step-1] = data[step-1].img_url;
                                 document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;
                                 document.getElementById('pl1_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
                                 document.getElementById('pl1_music'+step).style.backgroundSize = "contain";
@@ -171,9 +170,29 @@
                            //alert('음악 재생 에러');
                        }
                    });
+                   alert(document.getElementById(event.srcElement.id).style.backgroundImage.url)
                    document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
                    document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
-                   document.getElementById('playcover').style.backgroundImage = "url(image_arr[document.getElementById(event.srcElement.id).innerHTML].img_url)";
+                   document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
+               });
+           });
+
+           $(document).ready(function(){
+                $('.play_stop').click(function(){
+                   $.ajax({
+                      url : "http://localhost:8080/play",
+                       data : 'get',
+                       contentType:"application/json;charset=UTF-8",
+                       dataType : "json",
+                       success : function(data) {
+                           // var data = JSON.parse(data);
+                           // console.log("loading success");
+                           // console.log(data);
+                       },
+                       error : function() {
+                           //alert('음악 재생 에러');
+                       }
+                   });
                });
            });
 
@@ -446,8 +465,8 @@
         <br>
         <div id="sidebar">
             <div class="musicnow">
-                <div class="nowpart"><div class="cover" id="play_cover"></div> <h1 id="playtitle">노래명</h1> <h1 id="playsinger">가수명</h1> <div class="like"></div></div>
-                <div class="player"><div>이전</div><button id="play_stop" onclick='change()'>멈춤</button><div>다음</div></div>
+                
+                <div class="player"><div class="cover" id="playcover"></div> <h1 id="playtitle">노래명</h1> <h1 id="playsinger">가수명</h1> <div class="like"></div><div>이전</div><button id="play_stop" >멈춤</button><div>다음</div></div>
             </div>
         </div>
     </main>

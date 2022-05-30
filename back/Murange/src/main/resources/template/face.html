@@ -9,38 +9,81 @@
     <link rel="stylesheet" href="../static/face.css">
     <script defer src="main.js"></script>
     <script type="text/javascript" src="https://unpkg.com/webcam-easy/dist/webcam-easy.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // 1. 감정별 인기 음악
+            $(document).ready(function(){
+                    $.ajax({
+                        url : "http://localhost:8080/recommend",
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            // console.log(data);
+
+                            for (step = 1; step < 11; step++) {
+                                document.getElementById('title'+step).innerHTML = data[step-1].title;
+                                document.getElementById('singer'+step).innerHTML = data[step-1].singer;
+                                document.getElementById('cover'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('cover'+step).style.backgroundSize = "contain";
+                                // console.log(data[step-1].id);
+                                // console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
+
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                });
+            });
+
+            $(document).ready(function(){
+                $('.musiclist').click(function(){
+                   $.ajax({
+                      url : "http://localhost:8080/play",
+                       data : 'get',
+                       contentType:"application/json;charset=UTF-8",
+                       dataType : "json",
+                       success : function(data) {
+                           // var data = JSON.parse(data);
+                           // console.log("loading success");
+                           // console.log(data);
+                       },
+                       error : function() {
+                           //alert('음악 재생 에러');
+                       }
+                   });
+                   document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
+                   document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
+                   document.getElementById('playcover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
+               });
+           });
+        });
+    </script>
+
 </head>
-<div id="sidebar"> 
-    <div class="musiclist" id="music1" ><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music2" ><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music3"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music4"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music5"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music6"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music7"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music8"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music9"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music10"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist" id="music11"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music12"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music13"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music14"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music15"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music16"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music17"><div class="cover"></div>노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music18"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music19"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="musiclist"id="music20"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
+<div id="sidebar_face"> 
+    <div class="musiclist" id="music1" ><div class="cover" id="cover1"></div><h1 id="title1">노래명</h1><h1 id="singer1">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music2" ><div class="cover" id="cover2"></div> <h1 id="title2">노래명</h1><h1 id="singer2">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music3"><div class="cover" id="cover3"></div> <h1 id="title3">노래명</h1><h1 id="singer3">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music4"><div class="cover" id="cover4"></div> <h1 id="title4">노래명</h1><h1 id="singer4">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music5"><div class="cover" id="cover5"></div> <h1 id="title5">노래명</h1><h1 id="singer5">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music6"><div class="cover" id="cover6"></div><h1 id="title6">노래명</h1><h1 id="singer6">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music7"><div class="cover" id="cover7"></div><h1 id="title7">노래명</h1><h1 id="singer7">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music8"><div class="cover" id="cover8"></div> <h1 id="title8">노래명</h1><h1 id="singer8">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music9"><div class="cover" id="cover9"></div> <h1 id="title9">노래명</h1><h1 id="singer9">가수명</h1> <div class="like"></div></div>
+    <div class="musiclist"id="music10"><div class="cover" id="cover10"></div> <h1 id="title10">노래명</h1><h1 id="singer10">가수명</h1> <div class="like"></div></div>
     <div class="musicnow">
-    <div class="nowpart"><div class="cover"></div> 노래명 <br> 가수명 <div class="like"></div></div>
-    <div class="player"><div>이전</div><div>플레이</div><div>다음</div></div>
-    </div>
+                
+                <div class="player"><div class="cover"  id="playcover"></div> <h1 id="playtitle">노래명</h1> <h1 id="playsinger">가수명</h1> <div class="like"></div><div>이전</div><button id="play_stop" >멈춤</button><div>다음</div></div>
+            </div>
 </div>
 <body class="facebody">
     <header id="header">
         <nav id="nav">
             <div class="top">               
-                <a class="active" onclick="location.href='index.html'"" style="cursor: pointer;"> 
+                <a class="active" onclick="location.href='index.html'" style="cursor: pointer;"> 
                     MurangE
                 </a>
                 <a onclick="location.href='profile.html'"style="display:inline-flex;" ><div class="icon"></div>profile</a>
