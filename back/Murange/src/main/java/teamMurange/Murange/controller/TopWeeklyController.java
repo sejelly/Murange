@@ -32,12 +32,12 @@ public class TopWeeklyController {
     private final MusicRepository musicRepository;
 
 
-    @ApiOperation(value = "자정마다 topDaily, topWeekly 변경", notes = "매일 자정마다 topDaily, topWeekly 업데이트")
-    @Scheduled(cron = "0 0 24 * * *")
-    public ResponseEntity updateTopWeekly() {
-        topWeeklyService.updateTopWeekly();
-        return new ResponseEntity(HttpStatus.OK);
-    }
+//    @ApiOperation(value = "자정마다 topDaily, topWeekly 변경", notes = "매일 자정마다 topDaily, topWeekly 업데이트")
+//    @Scheduled(cron = "0 0 24 * * *")
+//    public ResponseEntity updateTopWeekly() {
+//        topWeeklyService.updateTopWeekly();
+//        return new ResponseEntity(HttpStatus.OK);
+//    }
 
     @ApiOperation(value = "주간 인기 음악 추천", notes = "메인 화면에서의 음악 추천")
     @GetMapping("/recommend/weekly")
