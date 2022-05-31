@@ -43,3 +43,6 @@ a {
   cursor: pointer;
 }
 
+#music1 {
+  z-index: 15;
+}

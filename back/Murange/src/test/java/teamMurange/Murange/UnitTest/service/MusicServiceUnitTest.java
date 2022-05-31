@@ -57,7 +57,6 @@ public class MusicServiceUnitTest {
         Figure figure = getStubFigure();
 
         return Music.builder()
-                .id(id)
                 .singer(singer)
                 .title(title)
                 .figure(figure)
@@ -66,9 +65,9 @@ public class MusicServiceUnitTest {
 
     private List<Music> getStubMusicList() {
         List<Music> musicList =  new ArrayList<>();
-        Music music1 = Music.builder().id(1L).singer("bts").title("butter").build();
-        Music music2 = Music.builder().id(2L).singer("10cm").title("americano").build();
-        Music music3 = Music.builder().id(3L).singer("jason").title("I'm Yours").build();
+        Music music1 = Music.builder().singer("bts").title("butter").build();
+        Music music2 = Music.builder().singer("10cm").title("americano").build();
+        Music music3 = Music.builder().singer("jason").title("I'm Yours").build();
 
         musicList.add(music1);
         musicList.add(music2);

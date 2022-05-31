@@ -5,11 +5,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.Music;
 import teamMurange.Murange.domain.TopDaily;
-import teamMurange.Murange.domain.TopWeekly;
 import teamMurange.Murange.dto.MusicResponseDto;
 import teamMurange.Murange.repository.MusicRepository;
 import teamMurange.Murange.repository.TopDailyRepository;
 
+import java.util.ArrayList;
 import java.util.List;
 @Transactional
 @Service
@@ -21,16 +21,18 @@ public class TopDailyService {
     private Long minStreamingCnt;
 
     @Transactional(readOnly = true)
-    public List<MusicResponseDto> getTopDailyAll() {
+    public List<Music> getTopDailyAll() {
         List<TopDaily> topDailyList = topDailyRepository.getTopDailyAll();
-        List<MusicResponseDto> musicResponseDtoList = null;
+        // List<MusicResponseDto> musicResponseDtoList = new ArrayList<>();
+        List<Music> musicList = new ArrayList<>();
 
         for (TopDaily topDaily : topDailyList ) {
             Music music = topDaily.getMusic();
-            MusicResponseDto musicResponseDto = new MusicResponseDto(music);
-            musicResponseDtoList.add(musicResponseDto);
+            // Long musicId = topDaily.getMusic().getId();
+            // Music music = musicRepository.getById(musicId);
+            musicList.add(music);
         }
-        return musicResponseDtoList;
+        return musicList;
     }
 
     // 조회수가 많아지면 새로운 TopDaily 생성

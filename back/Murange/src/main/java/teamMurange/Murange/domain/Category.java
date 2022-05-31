@@ -13,7 +13,7 @@ import java.util.List;
 @NoArgsConstructor
 @Table(name = "category")
 public class Category {
-    @Id
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "category_id")
     private Long id;
 
@@ -27,8 +27,7 @@ public class Category {
     private List<Music> musicList = new ArrayList<>();
 
     @Builder
-    public Category(Long id, Emotion firstEmotion, Emotion secondEmotion) {
-        this.id = id;
+    public Category(Emotion firstEmotion, Emotion secondEmotion) {
         this.firstEmotion = firstEmotion;
         this.secondEmotion = secondEmotion;
     }

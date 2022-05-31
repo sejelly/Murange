@@ -4,8 +4,6 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import teamMurange.Murange.domain.Emotion;
-import teamMurange.Murange.dto.CalendarResponseDto;
-import teamMurange.Murange.repository.CalendarRepository;
 import teamMurange.Murange.repository.CategoryRepository;
 
 @Service
