@@ -32,174 +32,174 @@
 
     <main class="main">
 
-<!--        &lt;!&ndash;데이터 주고받는 코드&ndash;&gt;-->
+        <!--데이터 주고받는 코드-->
 
 
-<!--        &lt;!&ndash;연습한 코드&ndash;&gt;-->
-<!--        <script type="text/javascript">-->
-<!--            var singer_arr = [];-->
-<!--            var image_arr = [];-->
+        <!--연습한 코드-->
+        <script type="text/javascript">
+            var singer_arr = [];
+            var image_arr = [];
 
 
-<!--            //로그인 후에 계정 정보 백으로 전송-->
-<!--            $(document).ready(function(){-->
-<!--                $('#submit').click(function(){   //submit 버튼을 클릭하였을 때-->
-<!--                    let inputData = {"contents": "new sample_contents"};-->
-<!--                    $.ajax({-->
-<!--                        type:'post',   //post 방식으로 전송-->
-<!--                        contentType:"application/json;charset=UTF-8",-->
-<!--                        url:'/users',-->
-<!--                        data : JSON.stringify(inputData),-->
-<!--                        dataType:'json',-->
-<!--                        success : function(data){-->
-<!--                            alert('계정 정보 전송 성공');-->
-<!--                        }-->
-<!--                    });-->
-<!--                });-->
-<!--            });-->
+            //로그인 후에 계정 정보 백으로 전송
+            $(document).ready(function(){
+                $('#submit').click(function(){   //submit 버튼을 클릭하였을 때
+                    let inputData = {"contents": "new sample_contents"};
+                    $.ajax({
+                        type:'post',   //post 방식으로 전송
+                        contentType:"application/json;charset=UTF-8",
+                        url:'/users',
+                        data : JSON.stringify(inputData),
+                        dataType:'json',
+                        success : function(data){
+                            alert('계정 정보 전송 성공');
+                        }
+                    });
+                });
+            });
 
-<!--            var userdata;-->
-<!--            //유저 id로 계정 정보 받아오기 (로그인 해서 post로 데이터 보낸 후에 실행하기)-->
-<!--            $.ajax({-->
-<!--                url : "/users/{user-id}",-->
-<!--                data : 'get',-->
-<!--                contentType:"application/json;charset=UTF-8",-->
-<!--                dataType : "json",-->
-<!--                success : function(data) {-->
-<!--                    console.log("loading success");-->
-<!--                    userdata = data;-->
-<!--                },-->
-<!--                error : function() {-->
-<!--                    //alert('유저 정보 로딩 에러');-->
-<!--                }-->
-<!--            });-->
+            var userdata;
+            //유저 id로 계정 정보 받아오기 (로그인 해서 post로 데이터 보낸 후에 실행하기)
+            $.ajax({
+                url : "/users/{user-id}",
+                data : 'get',
+                contentType:"application/json;charset=UTF-8",
+                dataType : "json",
+                success : function(data) {
+                    console.log("loading success");
+                    userdata = data;
+                },
+                error : function() {
+                    //alert('유저 정보 로딩 에러');
+                }
+            });
 
 
-<!--            //처음 페이지 로딩시 받아올 데이터-->
-<!--            $(document).ready(function() {-->
-<!--                // 1. 감정별 인기 음악-->
-<!--                $(document).ready(function(){-->
-<!--                    $.ajax({-->
-<!--                        url : "http://localhost:8080/recommend",-->
-<!--                        data : 'get',-->
-<!--                        contentType:"application/json;charset=UTF-8",-->
-<!--                        dataType : "json",-->
-<!--                        success : function(data) {-->
-<!--                            // console.log(data);-->
+            //처음 페이지 로딩시 받아올 데이터
+            $(document).ready(function() {
+                // 1. 감정별 인기 음악
+                $(document).ready(function(){
+                    $.ajax({
+                        url : "http://localhost:8080/recommend",
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            // console.log(data);
 
-<!--                            for (step = 1; step < 11; step++) {-->
-<!--                                singer_arr[step-1] = data[step-1].singer;-->
-<!--                                document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;-->
-<!--                                document.getElementById('pl1_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";-->
-<!--                                document.getElementById('pl1_music'+step).style.backgroundSize = "contain";-->
-<!--                                // console.log(data[step-1].id);-->
-<!--                                // console.log(data[step-1].img_url);-->
-<!--                            }-->
-<!--                            // console.log("loading success");-->
+                            for (step = 1; step < 11; step++) {
+                                singer_arr[step-1] = data[step-1].singer;
+                                document.getElementById('pl1_music'+step).innerHTML=data[step-1].id;
+                                document.getElementById('pl1_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('pl1_music'+step).style.backgroundSize = "contain";
+                                // console.log(data[step-1].id);
+                                // console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
 
-<!--                        },-->
-<!--                        error : function() {-->
-<!--                            //alert('음악 재생 에러');-->
-<!--                        }-->
-<!--                    });-->
-<!--                });-->
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                    });
+                });
 
-<!--                // 2. 오늘의 인기 음악-->
-<!--                $(document).ready(function(){-->
-<!--                    $.ajax({-->
-<!--                        url : "http://localhost:8080/recommend/today",-->
-<!--                        data : 'get',-->
-<!--                        contentType:"application/json;charset=UTF-8",-->
-<!--                        dataType : "json",-->
-<!--                        success : function(data) {-->
-<!--                            console.log("today");-->
-<!--                            console.log(data);-->
-<!--                            singerlist = data.singer;-->
-<!--                            for (step = 1; step < 11; step++) {-->
-<!--                                document.getElementById('pl2_music'+step).innerHTML=data[step-1].id;-->
-<!--                                document.getElementById('pl2_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";-->
-<!--                                document.getElementById('pl2_music'+step).style.backgroundSize = "contain";-->
-<!--                                console.log(data[step-1].id);-->
-<!--                                console.log(data[step-1].img_url);-->
-<!--                            }-->
-<!--                            // console.log("loading success");-->
+                // 2. 오늘의 인기 음악
+                $(document).ready(function(){
+                    $.ajax({
+                        url : "http://localhost:8080/recommend/today",
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            console.log("today");
+                            console.log(data);
+                            singerlist = data.singer;
+                            for (step = 1; step < 11; step++) {
+                                document.getElementById('pl2_music'+step).innerHTML=data[step-1].id;
+                                document.getElementById('pl2_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('pl2_music'+step).style.backgroundSize = "contain";
+                                console.log(data[step-1].id);
+                                console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
 
-<!--                        },-->
-<!--                        error : function() {-->
-<!--                            //alert('음악 재생 에러');-->
-<!--                        }-->
-<!--                    });-->
-<!--                });-->
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                    });
+                });
 
-<!--                // 3. 이번주 인기 음악-->
-<!--                $(document).ready(function(){-->
-<!--                    $.ajax({-->
-<!--                        url : "http://localhost:8080/recommend/weekly",-->
-<!--                        data : 'get',-->
-<!--                        contentType:"application/json;charset=UTF-8",-->
-<!--                        dataType : "json",-->
-<!--                        success : function(data) {-->
-<!--                            // console.log(data);-->
-<!--                            for (step = 1; step < 11; step++) {-->
-<!--                                document.getElementById('pl3_music'+step).innerHTML=data[step-1].id;-->
+                // 3. 이번주 인기 음악
+                $(document).ready(function(){
+                    $.ajax({
+                        url : "http://localhost:8080/recommend/weekly",
+                        data : 'get',
+                        contentType:"application/json;charset=UTF-8",
+                        dataType : "json",
+                        success : function(data) {
+                            // console.log(data);
+                            for (step = 1; step < 11; step++) {
+                                document.getElementById('pl3_music'+step).innerHTML=data[step-1].id;
 
-<!--                                document.getElementById('pl3_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";-->
-<!--                                document.getElementById('pl3_music'+step).style.backgroundSize = "contain";-->
-<!--                                // console.log(data[step-1].id);-->
-<!--                                // console.log(data[step-1].img_url);-->
-<!--                            }-->
-<!--                            // console.log("loading success");-->
+                                document.getElementById('pl3_music'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
+                                document.getElementById('pl3_music'+step).style.backgroundSize = "contain";
+                                // console.log(data[step-1].id);
+                                // console.log(data[step-1].img_url);
+                            }
+                            // console.log("loading success");
 
-<!--                        },-->
-<!--                        error : function() {-->
-<!--                            //alert('음악 재생 에러');-->
-<!--                        }-->
-<!--                    });-->
-<!--                });-->
-<!--                //음악 재생 코드&ndash;&gt;-->
-<!--                $(document).ready(function(){-->
-<!--                    $('.playlist').click(function(){-->
-<!--                        $.ajax({-->
-<!--                            url : "http://localhost:8080/play",-->
-<!--                            data : 'get',-->
-<!--                            contentType:"application/json;charset=UTF-8",-->
-<!--                            dataType : "json",-->
-<!--                            success : function(data) {-->
-<!--                                // var data = JSON.parse(data);-->
-<!--                                // console.log("loading success");-->
-<!--                                // console.log(data);-->
-<!--                            },-->
-<!--                            error : function() {-->
-<!--                                //alert('음악 재생 에러');-->
-<!--                            }-->
-<!--                        });-->
-<!--                        document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;-->
-<!--                        document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];-->
-<!--                        document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;-->
-<!--                    });-->
-<!--                });-->
+                        },
+                        error : function() {
+                            //alert('음악 재생 에러');
+                        }
+                    });
+                });
+                //음악 재생 코드-->
+                $(document).ready(function(){
+                    $('.playlist').click(function(){
+                        $.ajax({
+                            url : "http://localhost:8080/play",
+                            data : 'get',
+                            contentType:"application/json;charset=UTF-8",
+                            dataType : "json",
+                            success : function(data) {
+                                // var data = JSON.parse(data);
+                                // console.log("loading success");
+                                // console.log(data);
+                            },
+                            error : function() {
+                                //alert('음악 재생 에러');
+                            }
+                        });
+                        document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
+                        document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
+                        document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
+                    });
+                });
 
-<!--                $(document).ready(function(){-->
-<!--                    $('.play_stop').click(function(){-->
-<!--                        $.ajax({-->
-<!--                            url : "http://localhost:8080/play",-->
-<!--                            data : 'get',-->
-<!--                            contentType:"application/json;charset=UTF-8",-->
-<!--                            dataType : "json",-->
-<!--                            success : function(data) {-->
-<!--                                // var data = JSON.parse(data);-->
-<!--                                // console.log("loading success");-->
-<!--                                // console.log(data);-->
-<!--                            },-->
-<!--                            error : function() {-->
-<!--                                //alert('음악 재생 에러');-->
-<!--                            }-->
-<!--                        });-->
-<!--                        document.getElementById('playcover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;-->
-<!--                    });-->
-<!--                });-->
+                $(document).ready(function(){
+                    $('.play_stop').click(function(){
+                        $.ajax({
+                            url : "http://localhost:8080/play",
+                            data : 'get',
+                            contentType:"application/json;charset=UTF-8",
+                            dataType : "json",
+                            success : function(data) {
+                                // var data = JSON.parse(data);
+                                // console.log("loading success");
+                                // console.log(data);
+                            },
+                            error : function() {
+                                //alert('음악 재생 에러');
+                            }
+                        });
+                        document.getElementById('playcover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
+                    });
+                });
 
-<!--            });-->
+            });
 
         </script>
         <div style="min-width: max-content; align-items:center;" >

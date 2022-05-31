@@ -1,5 +1,9 @@
 package teamMurange.Murange.config.auth;
 
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import teamMurange.Murange.domain.Role;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -18,6 +22,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .headers().frameOptions().disable()
                 .and()
+                .cors()
+                .and()
                 .authorizeRequests()
                 .antMatchers("/", "/google2","/login", "/css/**", "/images/**", "/js/**", "/h2-console/**", "/profile").permitAll()
                 .antMatchers("/api/**").hasRole(Role.USER.name())
@@ -31,4 +37,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .userInfoEndpoint()
                 .userService(customOAuth2UserService);
     }
+    @Bean
+    public CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configuration = new CorsConfiguration();
+
+        configuration.addAllowedOrigin("*");
+        configuration.addAllowedHeader("*");
+        configuration.addAllowedMethod("*");
+        configuration.setAllowCredentials(true);
+
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configuration);
+        return source;
+    }
+
 }
