@@ -5,9 +5,6 @@ import lombok.Builder;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.sql.ConnectionBuilder;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Getter
@@ -25,6 +22,13 @@ public class Follow {
 
     @Column(name = "followee_id") // 팔로우하려는 인물
     private Long followee;
+
+    //@JoinColumn
+    //private User user;
+
+    //@ManyToOne(fetch = FetchType.LAZY)
+    //@JoinColumn
+    //private User followee;
 
     @Builder
     public Follow (User user1, Long user2) {

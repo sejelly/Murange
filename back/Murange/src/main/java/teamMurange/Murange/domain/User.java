@@ -24,6 +24,11 @@ public class User {
 
     private String email;
 
+    private String picture;
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Role role;
+
     @OneToOne
     @JoinColumn(name = "badge_id")
     private Badge badge;
@@ -37,17 +42,28 @@ public class User {
     @OneToMany(mappedBy = "user")
     private List<Calendar> calendarList = new ArrayList<>();
 
-    @OneToMany(mappedBy = "user")
-    private List<Follow> followList = new ArrayList<>();
+//    @OneToMany(mappedBy = "user")
+//    private List<Follow> followList = new ArrayList<>();
 
     @OneToMany(mappedBy = "user")
     private List<Comment> commentlist = new ArrayList<>();
 
     @Builder
-    public User(String name, String img_url, String email, Long id) {
+    public User(String name, String img_url, String email, String picture, Role role) {
         this.name = name;
         this.img_url = img_url;
         this.email = email;
-        this.id = id;
+        this.picture = picture;
+        this.role = role;
+    }
+
+    public User update(String name, String picture){
+        this.name = name;
+        this.picture = picture;
+
+        return this;
+    }
+    public String getRoleKey(){
+        return this.role.getKey();
     }
 }
