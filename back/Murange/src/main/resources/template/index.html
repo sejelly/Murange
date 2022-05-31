@@ -154,50 +154,30 @@
                         }
                 });
             });
-           //음악 재생 코드-->
+
+            // 음악 재생 코드
             $(document).ready(function(){
                 $('.playlist').click(function(){
-                   $.ajax({
-                      url : "http://localhost:8080/play",
-                       data : 'get',
-                       contentType:"application/json;charset=UTF-8",
-                       dataType : "json",
-                       success : function(data) {
-                           // var data = JSON.parse(data);
-                           // console.log("loading success");
-                           // console.log(data);
-                       },
-                       error : function() {
-                           //alert('음악 재생 에러');
-                       }
-                   });
-                   document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
-                   document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
-                   document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
-               });
-           });
+                    var audio1 = new Audio("sample.mp3");
+                    audio1.loop = false;
+                    audio1.volume = 0.5;
+                    audio1.play();
 
-           $(document).ready(function(){
-                $('.play_stop').click(function(){
-                   $.ajax({
-                      url : "http://localhost:8080/play",
-                       data : 'get',
-                       contentType:"application/json;charset=UTF-8",
-                       dataType : "json",
-                       success : function(data) {
-                           // var data = JSON.parse(data);
-                           // console.log("loading success");
-                           // console.log(data);
-                       },
-                       error : function() {
-                           //alert('음악 재생 에러');
-                       }
-                   });
-                   document.getElementById('playcover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
-               });
-           });
+                    $('#play_stop').click(function(){
+                        audio1.pause();
+                        audio1.currentTime = 0;
+                    });
+                }),
+
+                document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
+                document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
+                document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
+            });
 
         });
+
+
+        // });
 
         </script>
         <div style="min-width: max-content; align-items:center;" >
