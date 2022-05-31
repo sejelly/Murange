@@ -16,6 +16,8 @@
         $(document).ready(function() {
             // 1. 감정별 인기 음악
             $(document).ready(function(){
+                    //플레이어의 디폴트값은 플레이리스트 첫번째 요소 가져옴
+                    document.getElementById('playtitle').innerText = document.getElementById('music1').innerText;
                     $.ajax({
                         url : "http://localhost:8080/recommend",
                         data : 'get',
@@ -25,15 +27,13 @@
                             // console.log(data);
 
                             for (step = 1; step < 11; step++) {
-                                document.getElementById('title'+step).innerHTML = data[step-1].title;
-                                document.getElementById('singer'+step).innerHTML = data[step-1].singer;
+                                document.getElementById('music'+step).innerText = data[step-1].title + data[step-1].singer;
                                 document.getElementById('cover'+step).style.backgroundImage = "url('" + data[step-1].img_url + "')";
                                 document.getElementById('cover'+step).style.backgroundSize = "contain";
                                 // console.log(data[step-1].id);
                                 // console.log(data[step-1].img_url);
                             }
                             // console.log("loading success");
-
                         },
                         error : function() {
                             //alert('음악 재생 에러');
@@ -43,6 +43,8 @@
 
             $(document).ready(function(){
                 $('.musiclist').click(function(){
+                    alert(document.getElementById(event.srcElement.id).innerHTML);
+                    //alert(document.getElementByClassName(event.srcElement.className).innerText);
                    $.ajax({
                       url : "http://localhost:8080/play",
                        data : 'get',
@@ -57,9 +59,10 @@
                            //alert('음악 재생 에러');
                        }
                    });
-                   alert(document.getElementById(event.srcElement.id).id);
-                   document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
-                   document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
+                   //alert("title"+document.getElementById(event.srcElement.id).id);
+                   //alert(getElementByClassName("title"+document.getElementById(event.srcElement.id).id).id);
+                   //alert(getElementByClassName("title"+str(event.srcElement.id)).innerHTML);
+                   document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerText;
                    document.getElementById('playcover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
                });
            });
@@ -68,20 +71,21 @@
 
 </head>
 <div id="sidebar_face"> 
-    <div class="musiclist" id="1" ><div class="cover"></div><h1>노래명</h1><h1>가수명</h1> <div class="like"></div>df</div>
-    <div class="musiclist"id="2" ><div class="cover" id="cover2"></div> <h1 id="title2">노래명</h1><h1 id="singer2">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music3"><div class="cover" id="cover3"></div> <h1 id="title3">노래명</h1><h1 id="singer3">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music4"><div class="cover" id="cover4"></div> <h1 id="title4">노래명</h1><h1 id="singer4">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music5"><div class="cover" id="cover5"></div> <h1 id="title5">노래명</h1><h1 id="singer5">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music6"><div class="cover" id="cover6"></div><h1 id="title6">노래명</h1><h1 id="singer6">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music7"><div class="cover" id="cover7"></div><h1 id="title7">노래명</h1><h1 id="singer7">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music8"><div class="cover" id="cover8"></div> <h1 id="title8">노래명</h1><h1 id="singer8">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music9"><div class="cover" id="cover9"></div> <h1 id="title9">노래명</h1><h1 id="singer9">가수명</h1> <div class="like"></div></div>
-    <div class="musiclist"id="music10"><div class="cover" id="cover10"></div> <h1 id="title10">노래명</h1><h1 id="singer10">가수명</h1> <div class="like"></div></div>
-    <div class="musicnow">
-                
-                <div class="player"><div class="cover"  id="playcover"></div> <h1 id="playtitle">노래명</h1> <h1 id="playsinger">가수명</h1> <div class="like"></div><div>이전</div><button id="play_stop" >멈춤</button><div>다음</div></div>
-            </div>
+    <div class="musiclist" id="music1" ><div class="cover" id="cover1"></div>노래명1 가수명1<div class="like"></div></div>
+    <div class="musiclist"id="music2" ><div class="cover" id="cover2"></div> 노래명2 가수명2<div class="like"></div></div>
+    <div class="musiclist"id="music3"><div class="cover" id="cover3"></div> 노래명3 가수명3 <div class="like"></div></div>
+    <div class="musiclist"id="music4"><div class="cover" id="cover4"></div> 노래명4 가수명4 <div class="like"></div></div>
+    <div class="musiclist"id="music5"><div class="cover" id="cover5"></div> 노래명5 가수명5 <div class="like"></div></div>
+    <div class="musiclist"id="music6"><div class="cover" id="cover6"></div>노래명6 가수명6 <div class="like"></div></div>
+    <div class="musiclist"id="music7"><div class="cover" id="cover7"></div>노래명7 가수명7 <div class="like"></div></div>
+    <div class="musiclist"id="music8"><div class="cover" id="cover8"></div> 노래명8 가수명8 <div class="like"></div></div>
+    <div class="musiclist"id="music9"><div class="cover" id="cover9"></div> 노래명9 가수명9 <div class="like"></div></div>
+    <div class="musiclist"id="music10"><div class="cover" id="cover10"></div> 노래명10 가수명10 <div class="like"></div></div>
+    <div id="sidebar">
+        <div class="musicnow">
+            <div class="player"><div class="cover" id="playcover"></div> <h1 id="playtitle">default</h1> <div class="like"></div><div>이전</div><button id="play_stop" >멈춤</button><div>다음</div></div>
+        </div>
+    </div>
 </div>
 <body class="facebody">
     <header id="header">

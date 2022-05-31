@@ -40,9 +40,6 @@ button {
   height: 100px;
   width: 100%;
   max-width: 100%;
-  top: 75px;
-  bottom: 0px;
-  z-index: 10;
 }
 
 #sidebar_face {
@@ -92,8 +89,8 @@ button {
 
 .musicnow {
   width: 100%;
-  display: inline-block;
   position: fixed;
+  display:block;
   bottom: 0px;
   align-items: center;
   color: white;
@@ -101,7 +98,6 @@ button {
   justify-content: center;
   justify-items: center;
   margin: auto;
-  z-index: 3;
 }
 
 .player {
@@ -113,7 +109,6 @@ button {
   justify-content: center;
   justify-items: center;
   background-color: rgb(63, 63, 63);
-  z-index: 10;
 }
 
 .cover {
@@ -257,34 +252,9 @@ button {
     text-align: center;
   }
 
-
-  .musiclist {
-    display: none;
-  }
-  .musicnow {
-    display: flex;
-    position: fixed;
-    top: 100%-100px;
-    bottom: 0px;
-    left: 0%;
-    max-width: 100%;
-    max-height: 100px;
-  }
-  .nowpart {
-    height: 100px;
-  }
-  .player {
-    display: flex;
-    height: 100%;
-    width: 100%;
-  }
 }
 @media (max-width: 800px) {
-  .playlist {
-    display: inline;
-    float: inline;
-    padding: 50px;
-  }
+
 }
 @media (max-width: 600px) {
   .line {
