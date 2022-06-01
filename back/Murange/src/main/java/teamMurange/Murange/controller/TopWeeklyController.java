@@ -33,7 +33,7 @@ public class TopWeeklyController {
 
 
     @ApiOperation(value = "자정마다 topDaily, topWeekly 변경", notes = "매일 자정마다 topDaily, topWeekly 업데이트")
-    @Scheduled(cron = "0 0 24 * * *")
+    @Scheduled(cron = "0 0 0 * * *")
     public ResponseEntity updateTopWeekly() {
         topWeeklyService.updateTopWeekly();
         return new ResponseEntity(HttpStatus.OK);
