@@ -222,6 +222,32 @@
 
             });
 
+
+            // 음악 재생 코드
+            $(document).ready(function(){
+                $('.playlist').click(function(){
+                    var audio1 = new Audio("sample.mp3");
+                    audio1.loop = false;
+                    audio1.volume = 0.5;
+                    audio1.play();
+
+                    $('#play_stop').click(function(){
+                        audio1.pause();
+                        audio1.currentTime = 0;
+                    });
+                }),
+
+                document.getElementById('playtitle').innerHTML = document.getElementById(event.srcElement.id).innerHTML;
+                document.getElementById('playsinger').innerHTML = singer_arr[document.getElementById(event.srcElement.id).innerHTML];
+                document.getElementById('play_cover').style.backgroundImage = document.getElementById(event.srcElement.id).style.backgroundImage;
+            });
+
+        });
+
+
+
+        // });
+
         </script>
         <div style="min-width: max-content; align-items:center;" >
             <div><a id="face" href="http://localhost:8080/face"><h1>오늘의 기분을 알아볼게요</h1>
