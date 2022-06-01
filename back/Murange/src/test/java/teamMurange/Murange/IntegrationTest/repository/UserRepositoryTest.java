@@ -30,11 +30,11 @@ public class UserRepositoryTest {
 
     @Test
     public void start() {
-        User user1 = User.builder().name("kate").email("cdasf@gmail.com").build();
-        User user2 = User.builder().name("jin").email("dodgn@gmail.com").build();
-        User user3 = User.builder().name("teddy").email("dsgsdg56@gmail.com").build();
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
+//        User user1 = User.builder().name("kate").email("cdasf@gmail.com").build();
+//        User user2 = User.builder().name("jin").email("dodgn@gmail.com").build();
+//        User user3 = User.builder().name("teddy").email("dsgsdg56@gmail.com").build();
+//        userRepository.save(user1);
+//        userRepository.save(user2);
+//        userRepository.save(user3);
     };
 }

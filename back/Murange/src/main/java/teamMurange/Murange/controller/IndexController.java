@@ -26,7 +26,7 @@ public class IndexController {
 //        }
         return "login";
     }
-    @GetMapping("/google2")
+    @GetMapping("/google")
     public String google2(Model model, @LoginUser SessionUser user)
     {
         // userName을 사용할 수 있게 model에 저장
@@ -44,7 +44,7 @@ public class IndexController {
 //        if(user != null){
 //            model.addAttribute("userName",user.getName());
 //        }
-        return "pre";
+        return "face";
     }
     @GetMapping("/index")
     public String index(Model model, @LoginUser SessionUser user)

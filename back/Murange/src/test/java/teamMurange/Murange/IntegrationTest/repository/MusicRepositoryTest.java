@@ -40,20 +40,20 @@ public class MusicRepositoryTest {
     @DisplayName("음악 데이터 저장")
     @Test
     public void start() {
-        Long category1 = categoryRepository.searchCategoryId(Emotion.angry, Emotion.sad);
-        Category category = categoryRepository.getById(category1);
-        Figure figure = Figure.builder().angry(0.1F).disgust(0.1F).happiness(0.1F).sad(0.2F).neutral(0.3F).scared(0.1F).surprised(0.1F).build();
+//        Long category1 = categoryRepository.searchCategoryId(Emotion.angry, Emotion.sad);
+//        Category category = categoryRepository.getById(category1);
+//        Figure figure = Figure.builder().angry(0.1F).disgust(0.1F).happiness(0.1F).sad(0.2F).neutral(0.3F).scared(0.1F).surprised(0.1F).build();
 
-        Music music1 = Music.builder().category(category).title("title1").singer("singer1").figure(figure).build();
-        Music music2 = Music.builder().category(category).title("title2").singer("singer2").figure(figure).build();
-        Music music3 = Music.builder().category(category).title("title3").singer("singer3").figure(figure).build();
-        Music music4 = Music.builder().category(category).title("title4").singer("singer4").figure(figure).build();
-        Music music5 = Music.builder().category(category).title("title5").singer("singer5").figure(figure).build();
-        musicRepository.save(music1);
-        musicRepository.save(music2);
-        musicRepository.save(music3);
-        musicRepository.save(music4);
-        musicRepository.save(music5);
+//        Music music1 = Music.builder().category(category).title("title1").singer("singer1").figure(figure).build();
+//        Music music2 = Music.builder().category(category).title("title2").singer("singer2").figure(figure).build();
+//        Music music3 = Music.builder().category(category).title("title3").singer("singer3").figure(figure).build();
+//        Music music4 = Music.builder().category(category).title("title4").singer("singer4").figure(figure).build();
+//        Music music5 = Music.builder().category(category).title("title5").singer("singer5").figure(figure).build();
+//        musicRepository.save(music1);
+//        musicRepository.save(music2);
+//        musicRepository.save(music3);
+//        musicRepository.save(music4);
+//        musicRepository.save(music5);
     };
 
 

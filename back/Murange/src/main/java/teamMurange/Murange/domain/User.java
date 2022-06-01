@@ -22,6 +22,7 @@ public class User {
 
     private String img_url;
 
+
     private String email;
 
     private String picture;

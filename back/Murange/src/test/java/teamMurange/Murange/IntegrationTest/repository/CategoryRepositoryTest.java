@@ -38,19 +38,19 @@ public class CategoryRepositoryTest {
     @DisplayName("카테고리 저장")
     @Test
     public void start() {
-        Category category1 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.sad).build();;
-        Category category2 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.neutral).build();;
-        Category category3 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();;
-        Category category4 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.disgust).build();;
-        Category category5 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.scared).build();;
-        Category category6 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.surprised).build();;
-
-        categoryRepository.save(category1);
-        categoryRepository.save(category2);
-        categoryRepository.save(category3);
-        categoryRepository.save(category4);
-        categoryRepository.save(category5);
-        categoryRepository.save(category6);
+//        Category category1 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.sad).build();;
+//        Category category2 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.neutral).build();;
+//        Category category3 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();;
+//        Category category4 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.disgust).build();;
+//        Category category5 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.scared).build();;
+//        Category category6 = Category.builder().firstEmotion(Emotion.angry).secondEmotion(Emotion.surprised).build();;
+//
+//        categoryRepository.save(category1);
+//        categoryRepository.save(category2);
+//        categoryRepository.save(category3);
+//        categoryRepository.save(category4);
+//        categoryRepository.save(category5);
+//        categoryRepository.save(category6);
 
     };
 

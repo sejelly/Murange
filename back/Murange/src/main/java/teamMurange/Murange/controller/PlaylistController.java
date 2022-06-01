@@ -22,7 +22,8 @@ import java.util.Map;
 @Api(tags = { "Playlist Controller"})
 @RestController
 @RequiredArgsConstructor
-public class PlaylistController {
+public class
+PlaylistController {
 
     private final MusicService musicService;
     private final LikeMusicService likeMusicService;

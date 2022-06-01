@@ -23,6 +23,7 @@
                     MurangE
                 </a>
 <!--                <a id="login" onclick="location.href='index.html'"><div class="g-signin2" data-onsuccess="onSignIn"></div></a>-->
+<!--                <a id="login" onclick="location.href='index.html'" class="btn btn-success active" role="button">Google Login</a>-->
                 <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>
 
             </div>
@@ -199,11 +200,35 @@
                     });
                 });
 
+                $(document).ready(function(){
+                    $('#face').click(function(){
+                        $.ajax({
+                            url : "http://localhost:8080/face",
+                            data : 'get',
+                            contentType:"application/json;charset=UTF-8",
+                            dataType : "json",
+                            success : function() {
+                                // var data = JSON.parse(data);
+                                // console.log("loading success");
+                                // console.log(data);
+                            },
+                            error : function() {
+                                //alert('음악 재생 에러');
+                            }
+                        });
+
+                    });
+                });
+
             });
 
         </script>
         <div style="min-width: max-content; align-items:center;" >
-            <div id="face" onclick="location.href='face.html'"><h1>오늘의 기분을 알아볼게요</h1></div>
+                <div><a id="face" href="http://localhost:8080/face"><h1>오늘의 기분을 알아볼게요</h1>
+                </a></div>
+<!--                <a id="login" onclick="location.href='index.html'" class="btn btn-success active" role="button">Google Login</a>&ndash;&gt;-->
+<!--                <a href="/oauth2/authorization/google" class="btn btn-success active" role="button">Google Login</a>-->
+            </div>
             <div class="category"><h1>감정별 인기 음악</h1></div>
             <hr class="line">
             <div id="slider">

@@ -41,43 +41,43 @@ public class QuerydslTest {
 
     @Test
     public void startQuerydsl() {
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        User user = User.builder().name("user1").build();
-        em.persist(user);
-
-        //user1 찾아라.
-        User findMember = queryFactory
-                .select(QUser.user)
-                .from(QUser.user)
-                .where(QUser.user.name.eq("user1")) //파라미터 바인딩 처리
-                .fetchOne();
-        assertThat(findMember.getName()).isEqualTo("user1");
+//        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+//        User user = User.builder().name("user1").build();
+//        em.persist(user);
+//
+//        //user1 찾아라.
+//        User findMember = queryFactory
+//                .select(QUser.user)
+//                .from(QUser.user)
+//                .where(QUser.user.name.eq("user1")) //파라미터 바인딩 처리
+//                .fetchOne();
+//        assertThat(findMember.getName()).isEqualTo("user1");
     }
 
 
     @Test
     public void searchUserEmotion() {
-        Long userIdCond = 10L;
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
-        User user1 = User.builder().id(10L).name("user1").build();
-        Calendar calendar1 = Calendar.builder().user(user1).date(LocalDate.now()).firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();
-        em.persist(user1);
-        em.persist(calendar1);
-
-        CalendarResponseDto result = queryFactory
-                .select(Projections.fields(CalendarResponseDto.class,
-                        calendar.date,
-                        calendar.firstEmotion,
-                        calendar.secondEmotion))
-                .from(calendar)
-                .join(calendar.user, QUser.user)
-                .where(userIdEq(userIdCond))
-                .orderBy(calendar.date.desc())
-                .fetchFirst();
-
-        System.out.println("result");
-        System.out.println(result);
-        System.out.println(result.getFirstEmotion());
+//        Long userIdCond = 10L;
+//        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
+//        User user1 = User.builder().name("user1").build();
+//        Calendar calendar1 = Calendar.builder().user(user1).date(LocalDate.now()).firstEmotion(Emotion.angry).secondEmotion(Emotion.happiness).build();
+//        em.persist(user1);
+//        em.persist(calendar1);
+//
+//        CalendarResponseDto result = queryFactory
+//                .select(Projections.fields(CalendarResponseDto.class,
+//                        calendar.date,
+//                        calendar.firstEmotion,
+//                        calendar.secondEmotion))
+//                .from(calendar)
+//                .join(calendar.user, QUser.user)
+//                .where(userIdEq(userIdCond))
+//                .orderBy(calendar.date.desc())
+//                .fetchFirst();
+//
+//        System.out.println("result");
+//        System.out.println(result);
+//        System.out.println(result.getFirstEmotion());
     }
 
     private Predicate userIdEq(Long userIdCond) {
